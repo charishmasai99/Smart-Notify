@@ -29,23 +29,17 @@ Instead of juggling separate tools for drafting, translating, approving, and tra
 
 ## 📸 Screenshots
 
-<!--
-  HOW TO ADD SCREENSHOTS:
-  1. Run the app locally or open your deployed instance
-  2. Screenshot each key page and save to assets/ folder
-  3. Replace each placeholder below with: ![Page Name](assets/screenshot_name.png)
--->
-| Dashboard | Campaign Creation |
+|Admin Dashboard | Campaign Dashboard|
 |---|---|
-| ![Dashboard](assets/screenshot_dashboard.png) | ![Campaign Creation](assets/screenshot_campaign.png) |
+| ![Admin](assets/admin_dashboard.png) | ![Campaign dashboard](assets/campaigndashboard.png) |
 
-| AI Studio | Approval Workflow |
+| AI Studio | Communication Dashboard |
 |---|---|
-| ![AI Studio](assets/screenshot_ai_studio.png) | ![Approval](assets/screenshot_approval.png) |
+| ![AI Studio](assets/ai_campaign.png) | ![Communication Dadhboard](assets/communication_dashboard.png) |
 
-| Delivery Tracking | Reports & Analytics |
+| Delivery Tracking | Feedback  |
 |---|---|
-| ![Delivery Tracking](assets/screenshot_delivery.png) | ![Reports](assets/screenshot_reports.png) |
+| ![Delivery Tracking](assets/delivery_tracking.png) | ![Feedback](assets/feedback-engagement.png) |
 
 ---
 
