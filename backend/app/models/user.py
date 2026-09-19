@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from app.database.base import Base
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -9,3 +10,6 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     password = Column(String)
     role = Column(String)
+
+    # Firebase Cloud Messaging token
+    fcm_token = Column(String, nullable=True)

@@ -1,0 +1,2898 @@
+/* ============================================================
+   SMARTNOTIFY POLISHED UI LAYER
+   UI-only overrides. No API, service, workflow or data changes.
+   ============================================================ */
+
+:root {
+  --sn-ui-bg: #f4f7fb;
+  --sn-ui-card: #ffffff;
+  --sn-ui-border: #e3eaf3;
+  --sn-ui-text: #0b1730;
+  --sn-ui-muted: #6b7d95;
+  --sn-ui-blue: #2563eb;
+  --sn-ui-blue-dark: #1d4ed8;
+  --sn-ui-radius: 16px;
+}
+
+/* ============================================================
+   APPLICATION SHELL
+   ============================================================ */
+
+.sn-shell {
+  min-height: 100vh;
+  background: var(--sn-ui-bg);
+}
+
+.sn-topbar {
+  height: 72px;
+  padding: 0 26px;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid #e6ebf2;
+  box-shadow: 0 3px 18px rgba(15,23,42,.05);
+  backdrop-filter: blur(14px);
+}
+
+.sn-topbar-left { gap: 16px; }
+.sn-brand { gap: 11px; }
+.sn-brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#2563eb,#4f46e5);
+  box-shadow: 0 8px 20px rgba(37,99,235,.24);
+}
+.sn-brand-name { color: #0b1730 !important; font-weight: 850 !important; }
+.sn-brand-status { color: #7c8da5 !important; }
+
+.sn-navbar-search {
+  height: 44px;
+  width: min(520px, 43vw);
+  border-radius: 12px;
+  background: #f7f9fc;
+  border-color: #e1e8f1;
+}
+.sn-navbar-search:focus-within {
+  border-color: #b9cdfb;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.07);
+}
+
+.sn-icon-button {
+  border-color: #e1e8f1 !important;
+  background: #fff !important;
+  color: #42526a !important;
+}
+.sn-icon-button:hover { border-color: #bfd0f1 !important; color: var(--sn-ui-blue) !important; }
+
+.sidebar {
+  top: 72px;
+  width: 252px;
+  padding: 14px 10px 12px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.13), transparent 32%),
+    linear-gradient(180deg, #0a162c 0%, #0c1930 48%, #0a1428 100%);
+  border-right: 1px solid rgba(148, 163, 184, 0.08);
+  box-shadow: 14px 0 34px rgba(15, 23, 42, 0.10);
+}
+
+.sidebar-mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 50px;
+  margin: 0 3px 10px;
+  padding: 0 9px 11px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+}
+
+.sidebar-mobile-heading {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-mobile-kicker {
+  color: #64748b;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.sidebar-mobile-heading strong {
+  color: #e8eef8;
+  font-size: 13px;
+  line-height: 1.1;
+  font-weight: 750;
+  letter-spacing: -.01em;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 1px;
+}
+
+.sidebar-nav-section {
+  margin: 0;
+}
+
+.sidebar-section-items {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sidebar-section-label {
+  color: #657690;
+  padding: 13px 11px 6px;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.sidebar-section-label-first {
+  padding-top: 7px;
+}
+
+.sidebar-section-gap {
+  margin-top: 8px;
+}
+
+.sidebar-link {
+  min-height: 44px;
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  padding: 0 11px;
+  color: #aebbd0;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: -.005em;
+  transition:
+    background .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.sidebar-link:hover {
+  background: rgba(255,255,255,.055);
+  border-color: rgba(148,163,184,.08);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.sidebar-link.active {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border-color: rgba(147,197,253,.18);
+  color: #ffffff;
+  box-shadow: 0 9px 22px rgba(37,99,235,.24);
+}
+
+.sidebar-link.active::before {
+  left: 4px;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: rgba(255,255,255,.92);
+}
+
+.sidebar-link-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  border-radius: 7px;
+  color: #8494ad;
+  transition: color .18s ease, background .18s ease;
+}
+
+.sidebar-link:hover .sidebar-link-icon {
+  color: #dbeafe;
+  background: rgba(255,255,255,.06);
+}
+
+.sidebar-link.active .sidebar-link-icon {
+  color: #ffffff;
+  background: rgba(255,255,255,.13);
+}
+
+.sidebar-link-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-ai-badge {
+  margin-left: auto;
+  padding: 3px 6px;
+  border: 1px solid rgba(147,197,253,.22);
+  border-radius: 6px;
+  background: rgba(59,130,246,.12);
+  color: #bfdbfe;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: .05em;
+}
+
+.sidebar-link.active .sidebar-ai-badge {
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.22);
+  color: #ffffff;
+}
+
+.sidebar-user-card {
+  margin: auto 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid rgba(148,163,184,.10);
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.sidebar-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #2563eb, #4338ca);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(37,99,235,.22);
+}
+
+.sidebar-user-info strong {
+  color: #f1f5f9;
+  font-size: 11px;
+}
+
+.sidebar-user-info span {
+  color: #70809a;
+  font-size: 9px;
+}
+
+.sidebar-close {
+  display: none;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  border: 1px solid rgba(148,163,184,.12);
+  border-radius: 9px;
+  background: rgba(255,255,255,.04);
+  color: #94a3b8;
+}
+
+.sidebar-close:hover {
+  background: rgba(255,255,255,.09);
+  color: #ffffff;
+}
+
+.sn-main-sidebar-open { padding-left: 252px; }
+.sn-content { padding: 24px 28px 42px; }
+
+.sn-main-sidebar-open { padding-left: 252px; }
+.sn-content { padding: 24px 28px 42px; }
+
+/* ============================================================
+   COMMON PAGE LANGUAGE
+   ============================================================ */
+
+.sn-page,
+.audience-page,
+.sn-polished-page {
+  background: var(--sn-ui-bg) !important;
+  color: var(--sn-ui-text);
+}
+
+.sn-page,
+.audience-page { padding: 8px 4px 40px; }
+
+.sn-page-header,
+.audience-header-card {
+  margin-bottom: 22px;
+}
+
+.sn-page-title,
+.audience-title-row h1,
+.sn-polished-page h1 {
+  color: var(--sn-ui-text) !important;
+  letter-spacing: -.035em;
+}
+
+.sn-page-subtitle,
+.audience-title-row p,
+.sn-polished-page p { color: var(--sn-ui-muted); }
+
+.sn-primary-button,
+.audience-create-button {
+  min-height: 44px;
+  border-radius: 11px;
+  background: var(--sn-ui-blue);
+  box-shadow: 0 8px 20px rgba(37,99,235,.18);
+}
+.sn-primary-button:hover,
+.audience-create-button:hover { background: var(--sn-ui-blue-dark); }
+
+.sn-kpi-grid,
+.audience-kpi-grid { gap: 14px; margin-bottom: 20px; }
+.sn-kpi-card,
+.audience-kpi-card {
+  min-height: 132px;
+  border-radius: var(--sn-ui-radius);
+  border: 1px solid var(--sn-ui-border);
+  box-shadow: 0 7px 22px rgba(15,23,42,.045);
+}
+
+.sn-kpi-card { color: #07152f; }
+.sn-kpi-label { font-size: 13px; }
+.sn-kpi-value { font-size: 36px; }
+
+.sn-filter-card,
+.audience-filter-card {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--sn-ui-border);
+  box-shadow: 0 5px 18px rgba(15,23,42,.035);
+}
+.sn-search-box,
+.sn-filter-select,
+.audience-search-box,
+.audience-filter-select {
+  border-radius: 10px;
+  border-color: #dfe7f1;
+  background: #fbfcfe;
+}
+.sn-search-box:focus-within,
+.audience-search-box:focus-within { border-color:#b8caf0; box-shadow:0 0 0 4px rgba(37,99,235,.06); }
+
+.sn-table-card,
+.audience-table-card {
+  border-radius: var(--sn-ui-radius);
+  border-color: var(--sn-ui-border);
+  box-shadow: 0 7px 24px rgba(15,23,42,.045);
+}
+.sn-table-heading,
+.audience-table-header { padding: 20px 22px; }
+.sn-table th,
+.audience-table th { background:#f8fafc; color:#64748b; }
+.sn-table td,
+.audience-table td { padding: 16px 20px; }
+.sn-table tbody tr:hover,
+.audience-table tbody tr:hover { background:#f9fbff; }
+
+/* ============================================================
+   ANALYTICS / DELIVERY / FEEDBACK / REPORTS
+   The existing functional markup stays intact; these selectors
+   only improve its visual hierarchy.
+   ============================================================ */
+
+.analytics-polished-page > div,
+.delivery-polished-page > div,
+.feedback-polished-page > div,
+.reports-polished-page > div,
+.users-polished-page > div,
+.settings-polished-page > div,
+.templates-polished-page > div {
+  max-width: 1440px !important;
+}
+
+.analytics-polished-page [class*="rounded-2xl"],
+.delivery-polished-page [class*="rounded-2xl"],
+.feedback-polished-page [class*="rounded-2xl"],
+.reports-polished-page [class*="rounded-2xl"],
+.users-polished-page [class*="rounded-2xl"],
+.settings-polished-page [class*="rounded-2xl"],
+.templates-polished-page [class*="rounded-2xl"] {
+  border-color: var(--sn-ui-border) !important;
+  box-shadow: 0 7px 22px rgba(15,23,42,.04) !important;
+}
+
+.analytics-polished-page [class*="rounded-xl"],
+.delivery-polished-page [class*="rounded-xl"],
+.feedback-polished-page [class*="rounded-xl"],
+.reports-polished-page [class*="rounded-xl"],
+.users-polished-page [class*="rounded-xl"],
+.settings-polished-page [class*="rounded-xl"],
+.templates-polished-page [class*="rounded-xl"] {
+  border-color: var(--sn-ui-border) !important;
+}
+
+.analytics-polished-page h1,
+.delivery-polished-page h1,
+.feedback-polished-page h1,
+.reports-polished-page h1,
+.users-polished-page h1,
+.settings-polished-page h1,
+.templates-polished-page h1 {
+  font-weight: 800 !important;
+  letter-spacing: -.035em;
+}
+
+.analytics-polished-page button,
+.delivery-polished-page button,
+.feedback-polished-page button,
+.reports-polished-page button,
+.users-polished-page button,
+.settings-polished-page button,
+.templates-polished-page button {
+  border-radius: 10px;
+}
+
+/* ============================================================
+   EMPTY STATES — informative, never a dead blank page
+   ============================================================ */
+
+.sn-empty-cell,
+.audience-empty {
+  min-height: 260px;
+}
+
+.sn-empty-icon,
+.audience-empty-icon {
+  box-shadow: 0 10px 25px rgba(37,99,235,.1);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .sn-navbar-search { width: min(420px, 40vw); }
+  .sn-content { padding: 20px 20px 34px; }
+}
+
+@media (max-width: 800px) {
+  .sn-topbar { padding: 0 14px; }
+  .sn-navbar-search { display:none; }
+  .sn-content { padding: 18px 14px 30px; }
+  .sn-page, .audience-page { padding: 4px 0 28px; }
+}
+
+/* ============================================================
+   V2 UI FINISHING LAYER
+   Presentation-only improvements for the remaining workspaces.
+   ============================================================ */
+
+:root {
+  --sn-shadow-soft: 0 12px 35px rgba(15, 23, 42, .055);
+  --sn-shadow-hover: 0 18px 42px rgba(15, 23, 42, .085);
+}
+
+/* Page framing */
+.sn-page,
+.audience-page,
+.sn-polished-page {
+  min-height: calc(100vh - 72px);
+}
+
+.sn-page-header,
+.audience-header-card {
+  border-radius: 22px;
+}
+
+.sn-page-header {
+  padding: 26px 28px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid var(--sn-ui-border);
+  box-shadow: var(--sn-shadow-soft);
+}
+
+/* Existing campaign/audience/template pages */
+.sn-page .sn-table-card,
+.audience-page .audience-table-card,
+.templates-polished-page > div,
+.users-polished-page > div,
+.settings-polished-page > div {
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.sn-page .sn-table-card:hover,
+.audience-page .audience-table-card:hover {
+  box-shadow: var(--sn-shadow-hover);
+}
+
+/* Analytics */
+.analytics-polished-page {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, .055), transparent 30%),
+    var(--sn-ui-bg) !important;
+}
+
+.analytics-polished-page > div > .rounded-2xl,
+.analytics-polished-page > div > .grid > .rounded-2xl {
+  overflow: hidden;
+}
+
+.analytics-polished-page .recharts-cartesian-grid-horizontal line,
+.analytics-polished-page .recharts-cartesian-grid-vertical line {
+  stroke: #e8eef6;
+}
+
+.analytics-polished-page .recharts-tooltip-wrapper {
+  outline: none;
+}
+
+/* Delivery Tracking */
+.delivery-polished-page {
+  background:
+    radial-gradient(circle at 95% 5%, rgba(16, 185, 129, .045), transparent 26%),
+    var(--sn-ui-bg) !important;
+}
+
+.delivery-polished-page .rounded-2xl {
+  overflow: hidden;
+}
+
+.delivery-polished-page table thead th {
+  background: #f7f9fc;
+  border-bottom: 1px solid #e7edf5;
+}
+
+.delivery-polished-page table tbody tr {
+  border-bottom: 1px solid #eef2f7;
+}
+
+/* Engagement & Feedback */
+.feedback-polished-page {
+  background:
+    radial-gradient(circle at 5% 0%, rgba(124, 58, 237, .05), transparent 28%),
+    var(--sn-ui-bg) !important;
+}
+
+.feedback-polished-page .rounded-2xl,
+.feedback-polished-page .rounded-xl {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.feedback-polished-page .rounded-2xl:hover {
+  box-shadow: var(--sn-shadow-hover) !important;
+}
+
+/* Reports */
+.reports-polished-page {
+  background:
+    radial-gradient(circle at 95% 0%, rgba(37, 99, 235, .045), transparent 25%),
+    var(--sn-ui-bg) !important;
+}
+
+.reports-polished-page .rounded-2xl {
+  overflow: hidden;
+}
+
+/* Settings */
+.settings-polished-page {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, .05), transparent 28%),
+    var(--sn-ui-bg) !important;
+}
+
+.settings-polished-page input,
+.settings-polished-page select {
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.settings-polished-page input:focus,
+.settings-polished-page select:focus {
+  border-color: #8fb0ee !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, .08);
+}
+
+/* Channels */
+.sn-page .sn-channel-card,
+.sn-page [class*="channel"] {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* About */
+.about-page {
+  background:
+    radial-gradient(circle at 85% 5%, rgba(37, 99, 235, .06), transparent 28%),
+    var(--sn-ui-bg) !important;
+}
+
+.about-page article {
+  min-height: 175px;
+}
+
+/* More useful empty state: never a giant dead-white region */
+.analytics-polished-page .sn-empty-chart,
+.delivery-polished-page .sn-empty-chart {
+  min-height: 220px;
+}
+
+/* ============================================================
+   THEME SUPPORT
+   Existing Settings theme selector now affects the presentation.
+   No backend setting or API is introduced.
+   ============================================================ */
+
+html[data-theme="dark"] body {
+  background: #07111f;
+  color: #e5edf8;
+}
+
+html[data-theme="dark"] .sn-shell,
+html[data-theme="dark"] .sn-page,
+html[data-theme="dark"] .audience-page,
+html[data-theme="dark"] .sn-polished-page {
+  background: #07111f !important;
+  color: #e5edf8;
+}
+
+html[data-theme="dark"] .sn-topbar {
+  background: rgba(8, 20, 38, .96);
+  border-color: #1c2c43;
+}
+
+html[data-theme="dark"] .sn-brand-name,
+html[data-theme="dark"] .sn-page-title,
+html[data-theme="dark"] .sn-polished-page h1,
+html[data-theme="dark"] .sn-polished-page h2,
+html[data-theme="dark"] .sn-polished-page h3,
+html[data-theme="dark"] .sn-page h1,
+html[data-theme="dark"] .sn-page h2,
+html[data-theme="dark"] .sn-page h3 {
+  color: #f5f8ff !important;
+}
+
+html[data-theme="dark"] .sn-navbar-search,
+html[data-theme="dark"] .sn-icon-button {
+  background: #0d1c31 !important;
+  border-color: #263850 !important;
+  color: #dce7f7 !important;
+}
+
+html[data-theme="dark"] .analytics-polished-page [class*="bg-white"],
+html[data-theme="dark"] .delivery-polished-page [class*="bg-white"],
+html[data-theme="dark"] .feedback-polished-page [class*="bg-white"],
+html[data-theme="dark"] .reports-polished-page [class*="bg-white"],
+html[data-theme="dark"] .settings-polished-page [class*="bg-white"],
+html[data-theme="dark"] .templates-polished-page [class*="bg-white"],
+html[data-theme="dark"] .users-polished-page [class*="bg-white"],
+html[data-theme="dark"] .sn-page [class*="bg-white"],
+html[data-theme="dark"] .audience-page [class*="bg-white"] {
+  background: #0d1c31 !important;
+  border-color: #20334d !important;
+}
+
+html[data-theme="dark"] .analytics-polished-page [class*="text-[#07152f]"],
+html[data-theme="dark"] .analytics-polished-page [class*="text-[#0b1730]"],
+html[data-theme="dark"] .delivery-polished-page [class*="text-[#07152f]"],
+html[data-theme="dark"] .feedback-polished-page [class*="text-[#07152f]"],
+html[data-theme="dark"] .reports-polished-page [class*="text-[#0b1730]"],
+html[data-theme="dark"] .settings-polished-page [class*="text-[#0b1730]"],
+html[data-theme="dark"] .templates-polished-page [class*="text-[#07152f]"],
+html[data-theme="dark"] .users-polished-page [class*="text-[#0b1730]"] {
+  color: #f5f8ff !important;
+}
+
+html[data-theme="dark"] .analytics-polished-page [class*="bg-slate-50"],
+html[data-theme="dark"] .delivery-polished-page [class*="bg-slate-50"],
+html[data-theme="dark"] .feedback-polished-page [class*="bg-slate-50"],
+html[data-theme="dark"] .reports-polished-page [class*="bg-slate-50"],
+html[data-theme="dark"] .settings-polished-page [class*="bg-slate-50"] {
+  background: #12243b !important;
+}
+
+html[data-theme="dark"] .analytics-polished-page [class*="text-slate-500"],
+html[data-theme="dark"] .delivery-polished-page [class*="text-slate-500"],
+html[data-theme="dark"] .feedback-polished-page [class*="text-slate-500"],
+html[data-theme="dark"] .reports-polished-page [class*="text-slate-500"],
+html[data-theme="dark"] .settings-polished-page [class*="text-slate-500"] {
+  color: #9fb0c7 !important;
+}
+
+@media (max-width: 900px) {
+  .sn-page-header { padding: 20px; }
+  .about-page article { min-height: 0; }
+}
+
+
+.channels-polished-page {
+  background: radial-gradient(circle at 90% 0%, rgba(124, 58, 237, .05), transparent 26%), var(--sn-ui-bg) !important;
+}
+
+.channels-polished-page > div {
+  max-width: 1440px;
+}
+
+.channels-polished-page [class*="rounded-3xl"] {
+  border-color: var(--sn-ui-border) !important;
+  box-shadow: var(--sn-shadow-soft) !important;
+}
+
+.channels-polished-page input:focus,
+.channels-polished-page textarea:focus,
+.channels-polished-page select:focus {
+  border-color: #8fb0ee !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, .08);
+}
+
+/* ============================================================
+   SMARTNOTIFY MASTER UI SYSTEM
+   ============================================================
+   The User Management page is the visual reference for the
+   complete application. This final layer brings legacy/custom
+   workspace pages into the same visual language without changing
+   their JSX behaviour, API logic, state, workflows or data.
+   ============================================================ */
+
+:root {
+  --sn-master-bg: #f5f8fc;
+  --sn-master-card: #ffffff;
+  --sn-master-text: #07152f;
+  --sn-master-muted: #64748b;
+  --sn-master-border: #e2e8f0;
+  --sn-master-blue: #2563eb;
+  --sn-master-blue-dark: #1d4ed8;
+  --sn-master-blue-soft: #eff6ff;
+  --sn-master-green: #10b981;
+  --sn-master-green-soft: #ecfdf5;
+  --sn-master-purple: #8b5cf6;
+  --sn-master-purple-soft: #f5f3ff;
+  --sn-master-amber: #f59e0b;
+  --sn-master-amber-soft: #fffbeb;
+  --sn-master-red: #ef4444;
+  --sn-master-red-soft: #fff1f2;
+  --sn-master-radius: 16px;
+  --sn-master-radius-lg: 20px;
+  --sn-master-shadow: 0 1px 2px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.045);
+  --sn-master-shadow-hover: 0 12px 30px rgba(15,23,42,.075);
+  --sn-master-blue-shadow: 0 8px 20px rgba(37,99,235,.18);
+}
+
+/* ============================================================
+   COMMON WORKSPACE BACKGROUNDS
+   ============================================================ */
+
+.dashboard-page,
+.delivery-page,
+.audience-page,
+.settings-page,
+.ai-studio-page,
+.sn-page,
+.sn-polished-page {
+  background: var(--sn-master-bg) !important;
+  color: var(--sn-master-text);
+}
+
+.dashboard-page,
+.delivery-page,
+.audience-page,
+.settings-page,
+.ai-studio-page,
+.sn-page {
+  min-height: calc(100vh - 72px);
+}
+
+/* ============================================================
+   COMMON PAGE WIDTH / SPACING
+   ============================================================ */
+
+.dashboard-page,
+.delivery-page,
+.audience-page,
+.settings-page,
+.ai-studio-page,
+.sn-page {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.dashboard-page,
+.delivery-page,
+.audience-page,
+.settings-page,
+.ai-studio-page {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ============================================================
+   STANDARD HEADINGS
+   ============================================================ */
+
+.dashboard-page h1,
+.delivery-page h1,
+.audience-page h1,
+.settings-page h1,
+.ai-studio-page h1,
+.sn-page h1 {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+  letter-spacing: -.035em;
+}
+
+.dashboard-page p,
+.delivery-page p,
+.audience-page p,
+.settings-page p,
+.ai-studio-page p,
+.sn-page p {
+  color: var(--sn-master-muted);
+}
+
+/* ============================================================
+   STANDARD EYEBROW / SECTION LABEL
+   ============================================================ */
+
+.dashboard-eyebrow,
+.delivery-eyebrow,
+.audience-eyebrow,
+.settings-eyebrow,
+.ai-eyebrow,
+.sn-eyebrow {
+  color: var(--sn-master-blue) !important;
+  font-weight: 800 !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   STANDARD PAGE HEADER
+   ============================================================ */
+
+.sn-page-header,
+.dashboard-topline,
+.delivery-header,
+.audience-header-card,
+.settings-title-area,
+.ai-studio-header {
+  border-radius: var(--sn-master-radius-lg) !important;
+}
+
+.sn-page-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%) !important;
+  border: 1px solid var(--sn-master-border) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.delivery-header,
+.audience-header-card,
+.settings-title-area,
+.ai-studio-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%) !important;
+  border: 1px solid var(--sn-master-border) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+/* ============================================================
+   STANDARD PRIMARY / SECONDARY ACTIONS
+   ============================================================ */
+
+.dashboard-primary-action,
+.audience-create-button,
+.sn-primary-button,
+.ai-review-button,
+.ai-save-button {
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+}
+
+.dashboard-primary-action,
+.audience-create-button,
+.ai-review-button {
+  background: var(--sn-master-blue) !important;
+  border-color: var(--sn-master-blue) !important;
+  box-shadow: var(--sn-master-blue-shadow) !important;
+}
+
+.dashboard-primary-action:hover,
+.audience-create-button:hover,
+.ai-review-button:hover {
+  background: var(--sn-master-blue-dark) !important;
+}
+
+.dashboard-secondary-action,
+.refresh-button,
+.audience-reset-button,
+.ai-save-button {
+  background: #ffffff !important;
+  border: 1px solid var(--sn-master-border) !important;
+  color: #334155 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 2px rgba(15,23,42,.04) !important;
+}
+
+.dashboard-secondary-action:hover,
+.refresh-button:hover,
+.audience-reset-button:hover,
+.ai-save-button:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ============================================================
+   STANDARD CARDS
+   ============================================================ */
+
+.dashboard-kpi-card,
+.dashboard-panel,
+.delivery-stat-card,
+.delivery-section,
+.delivery-pulse-card,
+.audience-kpi-card,
+.audience-filter-card,
+.audience-table-card,
+.settings-option-row,
+.settings-card,
+.ai-form-card,
+.ai-info-card,
+.translation-card {
+  border-color: var(--sn-master-border) !important;
+  border-radius: var(--sn-master-radius) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.dashboard-kpi-card,
+.dashboard-panel,
+.delivery-stat-card,
+.delivery-section,
+.delivery-pulse-card,
+.audience-kpi-card,
+.audience-filter-card,
+.audience-table-card,
+.settings-option-row,
+.settings-card,
+.ai-form-card,
+.ai-info-card,
+.translation-card {
+  background: var(--sn-master-card) !important;
+}
+
+.dashboard-kpi-card:hover,
+.delivery-stat-card:hover,
+.audience-kpi-card:hover,
+.delivery-pulse-card:hover {
+  box-shadow: var(--sn-master-shadow-hover) !important;
+}
+
+/* ============================================================
+   COLOURED KPI ACCENTS
+   ============================================================ */
+
+.dashboard-kpi-card:nth-child(1),
+.delivery-stat-card:nth-child(1),
+.audience-kpi-card.blue {
+  border-top: 4px solid var(--sn-master-blue) !important;
+}
+
+.dashboard-kpi-card:nth-child(2),
+.delivery-stat-card:nth-child(2),
+.audience-kpi-card.green {
+  border-top: 4px solid var(--sn-master-green) !important;
+}
+
+.dashboard-kpi-card:nth-child(3),
+.delivery-stat-card:nth-child(3),
+.audience-kpi-card.purple {
+  border-top: 4px solid var(--sn-master-purple) !important;
+}
+
+.dashboard-kpi-card:nth-child(4),
+.delivery-stat-card:nth-child(4),
+.audience-kpi-card.orange {
+  border-top: 4px solid var(--sn-master-amber) !important;
+}
+
+.delivery-stat-card:nth-child(5) {
+  border-top: 4px solid var(--sn-master-red) !important;
+}
+
+/* ============================================================
+   DELIVERY TRACKING
+   ============================================================ */
+
+.delivery-page {
+  padding: 4px 0 32px !important;
+}
+
+.delivery-header {
+  padding: 24px 28px !important;
+  margin-bottom: 22px !important;
+}
+
+.delivery-header h1 {
+  font-size: 36px !important;
+  line-height: 1.1 !important;
+}
+
+.delivery-header p {
+  margin-top: 7px !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+
+.campaign-selector {
+  margin-bottom: 22px !important;
+  padding: 18px 20px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--sn-master-border) !important;
+  border-radius: var(--sn-master-radius) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.campaign-selector label {
+  color: var(--sn-master-text) !important;
+  font-weight: 750 !important;
+}
+
+.select-wrapper select,
+.delivery-page select {
+  border-color: #cbd5e1 !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+  min-height: 48px !important;
+}
+
+.delivery-stats {
+  gap: 16px !important;
+}
+
+.delivery-stat-card {
+  padding: 20px !important;
+  overflow: hidden !important;
+}
+
+.delivery-stat-label {
+  color: var(--sn-master-muted) !important;
+  font-weight: 600 !important;
+}
+
+.delivery-stat-value {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+}
+
+.delivery-stat-helper {
+  color: #94a3b8 !important;
+}
+
+.delivery-stat-icon {
+  border-radius: 12px !important;
+  background: var(--sn-master-blue-soft) !important;
+  color: var(--sn-master-blue) !important;
+}
+
+.delivery-table-wrapper,
+.delivery-table {
+  border-color: var(--sn-master-border) !important;
+}
+
+.delivery-table-wrapper {
+  border-radius: var(--sn-master-radius) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+  background: #ffffff !important;
+  overflow-x: auto !important;
+}
+
+.delivery-table th {
+  background: #f8fafc !important;
+  color: #64748b !important;
+  font-weight: 750 !important;
+}
+
+.delivery-table tbody tr:hover {
+  background: #f9fbff !important;
+}
+
+/* ============================================================
+   AUDIENCE
+   ============================================================ */
+
+.audience-page {
+  padding: 4px 0 32px !important;
+}
+
+.audience-header-card {
+  padding: 24px 28px !important;
+}
+
+.audience-title-row h1 {
+  color: var(--sn-master-text) !important;
+  font-size: 36px !important;
+  font-weight: 800 !important;
+}
+
+.audience-title-icon {
+  border-radius: 16px !important;
+  background: var(--sn-master-blue) !important;
+  box-shadow: var(--sn-master-blue-shadow) !important;
+}
+
+.audience-create-button {
+  min-height: 44px !important;
+}
+
+.audience-kpi-grid {
+  gap: 16px !important;
+}
+
+.audience-kpi-card {
+  padding: 20px !important;
+}
+
+.audience-filter-card,
+.audience-table-card {
+  background: #ffffff !important;
+}
+
+.audience-search-box,
+.audience-filter-select {
+  border-radius: 12px !important;
+  border-color: var(--sn-master-border) !important;
+  background: #ffffff !important;
+}
+
+.audience-search-box:focus-within,
+.audience-filter-select:focus {
+  border-color: #93b4f7 !important;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
+}
+
+.audience-table th {
+  background: #f8fafc !important;
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+.dashboard-page {
+  padding: 4px 0 32px !important;
+}
+
+.dashboard-topline {
+  padding: 24px 28px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%) !important;
+  border: 1px solid var(--sn-master-border) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.dashboard-title {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+}
+
+.dashboard-description {
+  color: var(--sn-master-muted) !important;
+}
+
+.dashboard-icon-box.blue {
+  background: var(--sn-master-blue-soft) !important;
+  color: var(--sn-master-blue) !important;
+}
+
+.dashboard-icon-box.green {
+  background: var(--sn-master-green-soft) !important;
+  color: #059669 !important;
+}
+
+.dashboard-icon-box.purple {
+  background: var(--sn-master-purple-soft) !important;
+  color: #7c3aed !important;
+}
+
+.dashboard-icon-box.orange {
+  background: var(--sn-master-amber-soft) !important;
+  color: #d97706 !important;
+}
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
+
+.settings-page {
+  padding: 4px 0 32px !important;
+}
+
+.settings-title-area {
+  padding: 24px 28px !important;
+}
+
+.settings-title-icon {
+  border-radius: 16px !important;
+  background: var(--sn-master-blue) !important;
+  box-shadow: var(--sn-master-blue-shadow) !important;
+}
+
+.settings-option-row,
+.settings-card {
+  background: #ffffff !important;
+}
+
+.settings-option-row:hover {
+  border-color: #cbdaf3 !important;
+  box-shadow: var(--sn-master-shadow-hover) !important;
+}
+
+.settings-page input,
+.settings-page select,
+.settings-page textarea {
+  border-color: var(--sn-master-border) !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+}
+
+.settings-page input:focus,
+.settings-page select:focus,
+.settings-page textarea:focus {
+  border-color: #93b4f7 !important;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
+}
+
+/* ============================================================
+   AI STUDIO
+   ============================================================ */
+
+.ai-studio-page {
+  padding: 4px 0 32px !important;
+}
+
+.ai-studio-header {
+  padding: 24px 28px !important;
+}
+
+.ai-studio-header h1 {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+}
+
+.ai-eyebrow {
+  color: var(--sn-master-blue) !important;
+}
+
+.ai-form-card,
+.ai-info-card,
+.translation-card {
+  background: #ffffff !important;
+}
+
+.ai-form-card input,
+.ai-form-card select,
+.ai-form-card textarea,
+.ai-studio-page input,
+.ai-studio-page select,
+.ai-studio-page textarea {
+  border-radius: 12px !important;
+  border-color: var(--sn-master-border) !important;
+}
+
+.ai-form-card input:focus,
+.ai-form-card select:focus,
+.ai-form-card textarea:focus,
+.ai-studio-page input:focus,
+.ai-studio-page select:focus,
+.ai-studio-page textarea:focus {
+  border-color: #93b4f7 !important;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
+}
+
+/* ============================================================
+   CAMPAIGN / CHANNELS / GENERIC SN PAGES
+   ============================================================ */
+
+.sn-page {
+  padding: 4px 0 32px !important;
+}
+
+.sn-page-header {
+  padding: 24px 28px !important;
+  margin-bottom: 24px !important;
+}
+
+.sn-page-title {
+  color: var(--sn-master-text) !important;
+  font-size: 36px !important;
+  font-weight: 800 !important;
+}
+
+.sn-page-subtitle {
+  color: var(--sn-master-muted) !important;
+}
+
+.sn-kpi-grid {
+  gap: 16px !important;
+}
+
+.sn-kpi-card {
+  background: #ffffff !important;
+  border-color: var(--sn-master-border) !important;
+  border-radius: var(--sn-master-radius) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.sn-kpi-card:hover {
+  box-shadow: var(--sn-master-shadow-hover) !important;
+}
+
+.sn-kpi-card:nth-child(1) {
+  border-top: 4px solid var(--sn-master-blue) !important;
+}
+
+.sn-kpi-card:nth-child(2) {
+  border-top: 4px solid var(--sn-master-green) !important;
+}
+
+.sn-kpi-card:nth-child(3) {
+  border-top: 4px solid var(--sn-master-purple) !important;
+}
+
+.sn-kpi-card:nth-child(4) {
+  border-top: 4px solid var(--sn-master-amber) !important;
+}
+
+.sn-table-card,
+.sn-filter-card {
+  background: #ffffff !important;
+  border-color: var(--sn-master-border) !important;
+  border-radius: var(--sn-master-radius) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.sn-search-box,
+.sn-filter-select {
+  border-radius: 12px !important;
+  border-color: var(--sn-master-border) !important;
+  background: #ffffff !important;
+}
+
+.sn-search-box:focus-within {
+  border-color: #93b4f7 !important;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
+}
+
+/* ============================================================
+   FEEDBACK / ANALYTICS / REPORTS / TEMPLATES
+   These pages already use Tailwind cards. Normalize the visual
+   treatment without changing their component structure.
+   ============================================================ */
+
+.sn-content > .min-h-full.bg-\[\#f5f8fc\],
+.sn-content > .bg-\[\#f5f8fc\] {
+  background: var(--sn-master-bg) !important;
+}
+
+.sn-content > .min-h-full > div,
+.sn-content > .min-h-full.bg-\[\#f5f8fc\] > div {
+  max-width: 1500px !important;
+}
+
+.sn-content > div > [class*="rounded-2xl"],
+.sn-content > div > [class*="rounded-3xl"] {
+  border-color: var(--sn-master-border) !important;
+}
+
+.sn-content [class*="bg-white"][class*="rounded-2xl"],
+.sn-content [class*="bg-white"][class*="rounded-3xl"] {
+  border-color: var(--sn-master-border) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.sn-content [class*="bg-white"][class*="rounded-2xl"]:hover,
+.sn-content [class*="bg-white"][class*="rounded-3xl"]:hover {
+  box-shadow: var(--sn-master-shadow-hover) !important;
+}
+
+.sn-content .text-\[\#07152f\],
+.sn-content .text-\[\#0b1730\] {
+  color: var(--sn-master-text) !important;
+}
+
+/* ============================================================
+   FEEDBACK INLINE-STYLE NORMALIZATION
+   ============================================================ */
+
+.sn-content > div > h1,
+.sn-content > div > div > h1 {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+}
+
+.sn-content > div > div > button,
+.sn-content > div > button {
+  border-radius: 12px !important;
+}
+
+/* ============================================================
+   STANDARD FORM CONTROLS ACROSS WORKSPACES
+   ============================================================ */
+
+.dashboard-page input,
+.dashboard-page select,
+.dashboard-page textarea,
+.delivery-page input,
+.delivery-page select,
+.delivery-page textarea,
+.audience-page input,
+.audience-page select,
+.audience-page textarea,
+.settings-page input,
+.settings-page select,
+.settings-page textarea,
+.sn-page input,
+.sn-page select,
+.sn-page textarea,
+.ai-studio-page input,
+.ai-studio-page select,
+.ai-studio-page textarea {
+  outline: none;
+}
+
+.dashboard-page input:focus,
+.dashboard-page select:focus,
+.dashboard-page textarea:focus,
+.delivery-page input:focus,
+.delivery-page select:focus,
+.delivery-page textarea:focus,
+.audience-page input:focus,
+.audience-page select:focus,
+.audience-page textarea:focus,
+.sn-page input:focus,
+.sn-page select:focus,
+.sn-page textarea:focus {
+  border-color: #93b4f7 !important;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
+}
+
+/* ============================================================
+   MOBILE CONSISTENCY
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .dashboard-page,
+  .delivery-page,
+  .audience-page,
+  .settings-page,
+  .ai-studio-page,
+  .sn-page {
+    padding: 4px 0 26px !important;
+  }
+
+  .delivery-header,
+  .audience-header-card,
+  .settings-title-area,
+  .ai-studio-header,
+  .sn-page-header,
+  .dashboard-topline {
+    padding: 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .delivery-header h1,
+  .audience-title-row h1,
+  .sn-page-title {
+    font-size: 30px !important;
+  }
+}
+
+/* ============================================================
+   DARK MODE — preserve existing Settings theme functionality
+   ============================================================ */
+
+html[data-theme="dark"] .dashboard-page,
+html[data-theme="dark"] .delivery-page,
+html[data-theme="dark"] .audience-page,
+html[data-theme="dark"] .settings-page,
+html[data-theme="dark"] .ai-studio-page,
+html[data-theme="dark"] .sn-page,
+html[data-theme="dark"] .sn-content {
+  background: #07111f !important;
+  color: #e5edf8 !important;
+}
+
+html[data-theme="dark"] .sn-page-header,
+html[data-theme="dark"] .dashboard-topline,
+html[data-theme="dark"] .delivery-header,
+html[data-theme="dark"] .audience-header-card,
+html[data-theme="dark"] .settings-title-area,
+html[data-theme="dark"] .ai-studio-header {
+  background: linear-gradient(135deg, #0d1c31 0%, #10233b 100%) !important;
+  border-color: #20334d !important;
+}
+
+html[data-theme="dark"] .dashboard-kpi-card,
+html[data-theme="dark"] .dashboard-panel,
+html[data-theme="dark"] .delivery-stat-card,
+html[data-theme="dark"] .delivery-section,
+html[data-theme="dark"] .delivery-pulse-card,
+html[data-theme="dark"] .audience-kpi-card,
+html[data-theme="dark"] .audience-filter-card,
+html[data-theme="dark"] .audience-table-card,
+html[data-theme="dark"] .settings-option-row,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .ai-form-card,
+html[data-theme="dark"] .ai-info-card,
+html[data-theme="dark"] .translation-card,
+html[data-theme="dark"] .sn-kpi-card,
+html[data-theme="dark"] .sn-table-card,
+html[data-theme="dark"] .sn-filter-card {
+  background: #0d1c31 !important;
+  border-color: #20334d !important;
+}
+
+html[data-theme="dark"] .dashboard-page h1,
+html[data-theme="dark"] .delivery-page h1,
+html[data-theme="dark"] .audience-page h1,
+html[data-theme="dark"] .settings-page h1,
+html[data-theme="dark"] .ai-studio-page h1,
+html[data-theme="dark"] .sn-page h1,
+html[data-theme="dark"] .dashboard-kpi-card > strong,
+html[data-theme="dark"] .delivery-stat-value,
+html[data-theme="dark"] .sn-kpi-value {
+  color: #f5f8ff !important;
+}
+
+html[data-theme="dark"] .dashboard-page p,
+html[data-theme="dark"] .delivery-page p,
+html[data-theme="dark"] .audience-page p,
+html[data-theme="dark"] .settings-page p,
+html[data-theme="dark"] .ai-studio-page p,
+html[data-theme="dark"] .sn-page p,
+html[data-theme="dark"] .delivery-stat-label,
+html[data-theme="dark"] .delivery-stat-helper {
+  color: #9fb0c7 !important;
+}
+
+html[data-theme="dark"] .campaign-selector,
+html[data-theme="dark"] .delivery-table-wrapper,
+html[data-theme="dark"] .sn-content [class*="bg-white"] {
+  background: #0d1c31 !important;
+  border-color: #20334d !important;
+}
+
+html[data-theme="dark"] .delivery-table th,
+html[data-theme="dark"] .audience-table th,
+html[data-theme="dark"] .sn-table th {
+  background: #12243b !important;
+  color: #9fb0c7 !important;
+}
+
+/* ============================================================
+   SMARTNOTIFY FINAL MASTER CONSISTENCY LAYER
+   ============================================================
+   Applied to every workspace page. This layer intentionally
+   targets the existing page/component classes and Tailwind
+   utility combinations so the UI follows one visual language.
+   No functionality, API, workflow or data behaviour is changed.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   MASTER PAGE SURFACES
+   ------------------------------------------------------------ */
+
+.sn-content {
+  background: var(--sn-master-bg) !important;
+}
+
+.sn-content > .sn-page,
+.sn-content > .audience-page,
+.sn-content > .dashboard-page,
+.sn-content > .delivery-page,
+.sn-content > .settings-page,
+.sn-content > .ai-studio-page,
+.sn-content > div[class~="min-h-full"],
+.sn-content > div[class~="min-h-screen"] {
+  background: var(--sn-master-bg) !important;
+}
+
+.sn-content > div[class~="min-h-full"] > div,
+.sn-content > div[class~="min-h-screen"] > div {
+  width: 100%;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ------------------------------------------------------------
+   ALL STANDARD PAGE HEADERS
+   ------------------------------------------------------------ */
+
+.sn-page-header,
+.audience-header-card,
+.delivery-header,
+.ai-studio-header,
+.settings-title-area {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8fbff 100%
+  ) !important;
+  border: 1px solid var(--sn-master-border) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.sn-page-header {
+  padding: 24px 28px !important;
+  margin-bottom: 24px !important;
+}
+
+.sn-page-title,
+.audience-title-row h1,
+.delivery-header h1,
+.ai-studio-header h1,
+.settings-title-area h1 {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.sn-page-subtitle,
+.audience-title-row p,
+.delivery-header p,
+.ai-studio-header p,
+.settings-title-area p {
+  color: var(--sn-master-muted) !important;
+}
+
+/* ------------------------------------------------------------
+   CAMPAIGN / CHANNELS KPI CARDS
+   ------------------------------------------------------------ */
+
+.sn-kpi-card {
+  position: relative !important;
+  min-height: 150px !important;
+  padding: 22px 24px !important;
+  overflow: hidden !important;
+
+  background: #ffffff !important;
+  color: var(--sn-master-text) !important;
+  border: 1px solid var(--sn-master-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.sn-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sn-master-shadow-hover) !important;
+}
+
+.sn-kpi-card::after {
+  content: "";
+  position: absolute;
+  right: -34px;
+  bottom: -42px;
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  background: #f8fafc;
+  pointer-events: none;
+}
+
+.sn-kpi-blue {
+  border-top: 4px solid var(--sn-master-blue) !important;
+}
+
+.sn-kpi-green {
+  border-top: 4px solid var(--sn-master-green) !important;
+}
+
+.sn-kpi-purple {
+  border-top: 4px solid var(--sn-master-purple) !important;
+}
+
+.sn-kpi-orange {
+  border-top: 4px solid var(--sn-master-amber) !important;
+}
+
+.sn-kpi-label {
+  position: relative;
+  z-index: 1;
+  color: #64748b !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.sn-kpi-value {
+  position: relative;
+  z-index: 1;
+  margin-top: 12px !important;
+  color: var(--sn-master-text) !important;
+  font-size: 38px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.sn-kpi-icon {
+  position: absolute !important;
+  z-index: 2;
+  right: 22px !important;
+  top: 22px !important;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  opacity: 1 !important;
+}
+
+.sn-kpi-blue .sn-kpi-icon {
+  background: var(--sn-master-blue-soft);
+  color: var(--sn-master-blue);
+}
+
+.sn-kpi-green .sn-kpi-icon {
+  background: var(--sn-master-green-soft);
+  color: var(--sn-master-green);
+}
+
+.sn-kpi-purple .sn-kpi-icon {
+  background: var(--sn-master-purple-soft);
+  color: var(--sn-master-purple);
+}
+
+.sn-kpi-orange .sn-kpi-icon {
+  background: var(--sn-master-amber-soft);
+  color: var(--sn-master-amber);
+}
+
+/* ------------------------------------------------------------
+   AUDIENCE PAGE
+   ------------------------------------------------------------ */
+
+.audience-page {
+  padding: 4px 0 34px !important;
+}
+
+.audience-header-card {
+  padding: 22px 24px !important;
+  margin-bottom: 20px !important;
+}
+
+.audience-title-icon {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 16px !important;
+  background: var(--sn-master-blue) !important;
+  color: #ffffff !important;
+  box-shadow: var(--sn-master-blue-shadow) !important;
+}
+
+.audience-title-row h1 {
+  font-size: 34px !important;
+}
+
+/* AudienceStats.jsx uses Tailwind classes rather than the legacy
+   .audience-kpi-card class. Target that four-card grid directly. */
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div {
+  position: relative;
+  min-height: 132px;
+  padding: 22px 24px !important;
+  overflow: hidden;
+  background: #ffffff !important;
+  border: 1px solid var(--sn-master-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div:nth-child(1) {
+  border-top: 4px solid var(--sn-master-blue) !important;
+}
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div:nth-child(2) {
+  border-top: 4px solid var(--sn-master-green) !important;
+}
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div:nth-child(3) {
+  border-top: 4px solid var(--sn-master-purple) !important;
+}
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div:nth-child(4) {
+  border-top: 4px solid var(--sn-master-amber) !important;
+}
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div p[class*="text-4xl"] {
+  color: var(--sn-master-text) !important;
+  font-size: 36px !important;
+}
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div p[class*="text-base"] {
+  color: #64748b !important;
+}
+
+.audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div > div > div[class*="bg-blue-50"] {
+  background: var(--sn-master-blue-soft) !important;
+}
+
+/* ------------------------------------------------------------
+   COMMON FILTER / TOOLBAR CARDS
+   ------------------------------------------------------------ */
+
+.sn-filter-card,
+.audience-filter-card,
+.campaign-selector {
+  background: #ffffff !important;
+  border: 1px solid var(--sn-master-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.sn-filter-card,
+.audience-filter-card {
+  padding: 16px !important;
+  margin-bottom: 22px !important;
+}
+
+.sn-search-box,
+.sn-filter-select,
+.audience-search-box,
+.audience-filter-select,
+.campaign-selector select,
+.delivery-page select {
+  min-height: 48px !important;
+  border: 1px solid #d8e1ec !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+}
+
+.sn-search-box:focus-within,
+.audience-search-box:focus-within {
+  border-color: #93b4f7 !important;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.08) !important;
+}
+
+/* ------------------------------------------------------------
+   TABLES — SAME STYLE EVERYWHERE
+   ------------------------------------------------------------ */
+
+.sn-table-card,
+.audience-table-card,
+.delivery-section,
+.delivery-pulse-card {
+  overflow: hidden !important;
+  background: #ffffff !important;
+  border: 1px solid var(--sn-master-border) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.sn-table-heading,
+.audience-table-header {
+  padding: 22px 24px !important;
+  border-bottom: 1px solid var(--sn-master-border) !important;
+}
+
+.sn-table-heading h2,
+.audience-table-header h2 {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+}
+
+.sn-table-heading p,
+.audience-table-header p {
+  color: var(--sn-master-muted) !important;
+}
+
+.sn-table th,
+.audience-table th,
+.delivery-table th {
+  background: #f8fafc !important;
+  color: #64748b !important;
+  border-bottom: 1px solid var(--sn-master-border) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.sn-table tbody tr,
+.audience-table tbody tr,
+.delivery-table tbody tr {
+  border-bottom: 1px solid #eef2f7 !important;
+}
+
+.sn-table tbody tr:hover,
+.audience-table tbody tr:hover,
+.delivery-table tbody tr:hover {
+  background: #f9fbff !important;
+}
+
+/* ------------------------------------------------------------
+   TAILWIND-BASED WORKSPACE ROOTS
+   Analytics / Reports / Templates / Users / Engagement Feedback
+   ------------------------------------------------------------ */
+
+.sn-content > div[class~="min-h-full"],
+.sn-content > div[class~="min-h-screen"] {
+  padding: 4px 0 34px !important;
+}
+
+.sn-content > div[class~="min-h-full"] > div,
+.sn-content > div[class~="min-h-screen"] > div {
+  max-width: 1500px !important;
+}
+
+.sn-content > div[class~="min-h-full"] h1,
+.sn-content > div[class~="min-h-screen"] h1 {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+  letter-spacing: -.035em !important;
+}
+
+/* White rounded cards throughout these pages. */
+
+.sn-content > div[class~="min-h-full"] [class~="bg-white"][class~="rounded-2xl"],
+.sn-content > div[class~="min-h-full"] [class~="bg-white"][class~="rounded-3xl"],
+.sn-content > div[class~="min-h-screen"] [class~="bg-white"][class~="rounded-2xl"],
+.sn-content > div[class~="min-h-screen"] [class~="bg-white"][class~="rounded-3xl"] {
+  border-color: var(--sn-master-border) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+/* Standard buttons on Tailwind pages. */
+
+.sn-content > div[class~="min-h-full"] button[class~="bg-blue-600"],
+.sn-content > div[class~="min-h-screen"] button[class~="bg-blue-600"] {
+  background: var(--sn-master-blue) !important;
+  box-shadow: var(--sn-master-blue-shadow) !important;
+}
+
+.sn-content > div[class~="min-h-full"] button[class~="bg-blue-600"]:hover,
+.sn-content > div[class~="min-h-screen"] button[class~="bg-blue-600"]:hover {
+  background: var(--sn-master-blue-dark) !important;
+}
+
+/* Reports / Analytics / Templates / Users KPI-style cards. */
+
+.sn-content > div[class~="min-h-full"] [class~="grid-cols-1"] > [class~="rounded-2xl"][class~="bg-white"],
+.sn-content > div[class~="min-h-screen"] [class~="grid-cols-1"] > [class~="rounded-2xl"][class~="bg-white"] {
+  border-color: var(--sn-master-border) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+/* ------------------------------------------------------------
+   ANALYTICS / REPORTS HEADER CARDS
+   ------------------------------------------------------------ */
+
+.sn-content > div[class~="min-h-screen"] > div > header,
+.sn-content > div[class~="min-h-full"] > div > header {
+  border-radius: 20px !important;
+  border-color: var(--sn-master-border) !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+/* ------------------------------------------------------------
+   FEEDBACK PAGE — INLINE-STYLED CARDS STILL GET CONSISTENCY
+   ------------------------------------------------------------ */
+
+.sn-content > div[style*="max-width"] {
+  background: var(--sn-master-bg) !important;
+  color: var(--sn-master-text);
+}
+
+.sn-content > div[style*="max-width"] h1,
+.sn-content > div[style*="max-width"] h2,
+.sn-content > div[style*="max-width"] h3 {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+}
+
+/* ------------------------------------------------------------
+   AI STUDIO / SETTINGS / DELIVERY COMMON COMPONENTS
+   ------------------------------------------------------------ */
+
+.ai-form-card,
+.ai-info-card,
+.translation-card,
+.settings-card,
+.settings-option-row,
+.delivery-stat-card {
+  background: #ffffff !important;
+  border-color: var(--sn-master-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.delivery-stat-card {
+  color: var(--sn-master-text) !important;
+}
+
+.delivery-stat-label {
+  color: #64748b !important;
+}
+
+.delivery-stat-value {
+  color: var(--sn-master-text) !important;
+  font-weight: 800 !important;
+}
+
+.delivery-stat-icon {
+  background: var(--sn-master-blue-soft) !important;
+  color: var(--sn-master-blue) !important;
+  border-radius: 13px !important;
+}
+
+/* ------------------------------------------------------------
+   BUTTON LANGUAGE — ALL WORKSPACE ACTIONS
+   ------------------------------------------------------------ */
+
+.sn-primary-button,
+.audience-create-button,
+.ai-review-button,
+.ai-main-button,
+.ai-save-button {
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+}
+
+.sn-primary-button,
+.audience-create-button,
+.ai-review-button,
+.ai-main-button {
+  background: var(--sn-master-blue) !important;
+  color: #ffffff !important;
+  border-color: var(--sn-master-blue) !important;
+  box-shadow: var(--sn-master-blue-shadow) !important;
+}
+
+.sn-primary-button:hover,
+.audience-create-button:hover,
+.ai-review-button:hover,
+.ai-main-button:hover {
+  background: var(--sn-master-blue-dark) !important;
+}
+
+.refresh-button,
+.sn-secondary-add,
+.ai-save-button,
+.dashboard-secondary-action,
+.audience-reset-button {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border: 1px solid var(--sn-master-border) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--sn-master-shadow) !important;
+}
+
+.refresh-button:hover,
+.sn-secondary-add:hover,
+.ai-save-button:hover,
+.dashboard-secondary-action:hover,
+.audience-reset-button:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE MASTER LAYOUT
+   ------------------------------------------------------------ */
+
+@media (max-width: 1100px) {
+  .sn-page,
+  .audience-page,
+  .delivery-page,
+  .dashboard-page,
+  .settings-page,
+  .ai-studio-page {
+    max-width: 100%;
+  }
+
+  .sn-page-header,
+  .audience-header-card,
+  .delivery-header,
+  .ai-studio-header,
+  .settings-title-area {
+    border-radius: 16px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .sn-page-header,
+  .audience-header-card,
+  .delivery-header,
+  .ai-studio-header,
+  .settings-title-area {
+    padding: 20px !important;
+  }
+
+  .sn-page-title,
+  .audience-title-row h1,
+  .delivery-header h1,
+  .ai-studio-header h1,
+  .settings-title-area h1 {
+    font-size: 28px !important;
+  }
+
+  .sn-kpi-card {
+    min-height: 128px !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   DARK MODE — keep the same component hierarchy
+   ------------------------------------------------------------ */
+
+html[data-theme="dark"] .sn-content,
+html[data-theme="dark"] .sn-content > .sn-page,
+html[data-theme="dark"] .sn-content > .audience-page,
+html[data-theme="dark"] .sn-content > .dashboard-page,
+html[data-theme="dark"] .sn-content > .delivery-page,
+html[data-theme="dark"] .sn-content > .settings-page,
+html[data-theme="dark"] .sn-content > .ai-studio-page,
+html[data-theme="dark"] .sn-content > div[class~="min-h-full"],
+html[data-theme="dark"] .sn-content > div[class~="min-h-screen"] {
+  background: #07111f !important;
+}
+
+html[data-theme="dark"] .sn-page-header,
+html[data-theme="dark"] .audience-header-card,
+html[data-theme="dark"] .delivery-header,
+html[data-theme="dark"] .ai-studio-header,
+html[data-theme="dark"] .settings-title-area {
+  background: linear-gradient(135deg, #0d1c31 0%, #10233b 100%) !important;
+  border-color: #20334d !important;
+}
+
+html[data-theme="dark"] .sn-kpi-card,
+html[data-theme="dark"] .audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div,
+html[data-theme="dark"] .sn-filter-card,
+html[data-theme="dark"] .audience-filter-card,
+html[data-theme="dark"] .sn-table-card,
+html[data-theme="dark"] .audience-table-card,
+html[data-theme="dark"] .delivery-section,
+html[data-theme="dark"] .delivery-pulse-card,
+html[data-theme="dark"] .delivery-stat-card,
+html[data-theme="dark"] .ai-form-card,
+html[data-theme="dark"] .ai-info-card,
+html[data-theme="dark"] .translation-card,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .settings-option-row {
+  background: #0d1c31 !important;
+  border-color: #20334d !important;
+}
+
+html[data-theme="dark"] .sn-kpi-label,
+html[data-theme="dark"] .delivery-stat-label,
+html[data-theme="dark"] .audience-page > div[class*="grid-cols-1"][class*="md:grid-cols-2"] > div p[class*="text-base"] {
+  color: #9fb0c7 !important;
+}
+
+html[data-theme="dark"] .sn-kpi-value,
+html[data-theme="dark"] .delivery-stat-value,
+html[data-theme="dark"] .sn-page-title,
+html[data-theme="dark"] .audience-title-row h1,
+html[data-theme="dark"] .delivery-header h1,
+html[data-theme="dark"] .ai-studio-header h1,
+html[data-theme="dark"] .settings-title-area h1 {
+  color: #f5f8ff !important;
+}
+
+html[data-theme="dark"] .sn-table th,
+html[data-theme="dark"] .audience-table th,
+html[data-theme="dark"] .delivery-table th {
+  background: #12243b !important;
+  color: #9fb0c7 !important;
+  border-color: #20334d !important;
+}
+
+/* ============================================================
+   FINAL ALL-PAGE VISUAL CONSISTENCY LAYER
+   ============================================================
+   The User Management workspace is the visual reference.
+   These selectors normalize pages that still use Tailwind-only
+   markup or legacy inline styling. No application behaviour,
+   API calls, state, routing, permissions or business logic is
+   changed by this layer.
+   ============================================================ */
+
+:root {
+  --sn-ui-page-bg: #f5f8fc;
+  --sn-ui-card-bg: #ffffff;
+  --sn-ui-heading: #07152f;
+  --sn-ui-body: #64748b;
+  --sn-ui-border: #e2e8f0;
+  --sn-ui-blue: #2563eb;
+  --sn-ui-blue-dark: #1d4ed8;
+  --sn-ui-blue-soft: #eff6ff;
+  --sn-ui-green: #10b981;
+  --sn-ui-green-soft: #ecfdf5;
+  --sn-ui-purple: #8b5cf6;
+  --sn-ui-purple-soft: #f5f3ff;
+  --sn-ui-amber: #f59e0b;
+  --sn-ui-amber-soft: #fffbeb;
+  --sn-ui-red: #ef4444;
+  --sn-ui-red-soft: #fff1f2;
+  --sn-ui-radius: 16px;
+  --sn-ui-radius-lg: 20px;
+  --sn-ui-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.045);
+  --sn-ui-shadow-hover: 0 12px 30px rgba(15, 23, 42, 0.075);
+}
+
+/* ------------------------------------------------------------
+   PAGE ROOTS USED BY TAILWIND-BASED PAGES
+   ------------------------------------------------------------ */
+
+.sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"],
+.sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"],
+.sn-content > div[class*="min-h-full"][class*="bg-slate-50"] {
+  background: var(--sn-ui-page-bg) !important;
+  color: var(--sn-ui-heading) !important;
+}
+
+.sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"] > div,
+.sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"] > div,
+.sn-content > div[class*="min-h-full"][class*="bg-slate-50"] > div {
+  max-width: 1500px !important;
+}
+
+/* ------------------------------------------------------------
+   COMMON TAILWIND CARDS
+   ------------------------------------------------------------ */
+
+.sn-content [class*="rounded-2xl"][class*="border"][class*="bg-white"],
+.sn-content [class*="rounded-3xl"][class*="border"][class*="bg-white"],
+.sn-content [class*="rounded-2xl"][class*="bg-white"][class*="shadow"],
+.sn-content [class*="rounded-3xl"][class*="bg-white"][class*="shadow"] {
+  border-color: var(--sn-ui-border) !important;
+  border-radius: var(--sn-ui-radius) !important;
+  box-shadow: var(--sn-ui-shadow) !important;
+}
+
+.sn-content [class*="rounded-2xl"][class*="border"][class*="bg-white"]:hover,
+.sn-content [class*="rounded-3xl"][class*="border"][class*="bg-white"]:hover,
+.sn-content [class*="rounded-2xl"][class*="bg-white"][class*="shadow"]:hover,
+.sn-content [class*="rounded-3xl"][class*="bg-white"][class*="shadow"]:hover {
+  box-shadow: var(--sn-ui-shadow-hover) !important;
+}
+
+/* ------------------------------------------------------------
+   TAILWIND PAGE HEADERS
+   ------------------------------------------------------------ */
+
+.sn-content > div[class*="min-h-full"] > div > div:first-child,
+.sn-content > div[class*="min-h-screen"] > div > header {
+  border-color: var(--sn-ui-border) !important;
+}
+
+.sn-content > div[class*="min-h-screen"] > div > header,
+.sn-content > div[class*="min-h-full"] > div > div:first-child[class*="rounded-3xl"] {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%) !important;
+  border-radius: var(--sn-ui-radius-lg) !important;
+  box-shadow: var(--sn-ui-shadow) !important;
+}
+
+/* Keep the page title hierarchy identical to User Management. */
+.sn-content h1[class*="text-[#07152f]"],
+.sn-content h1[class*="text-slate-950"],
+.sn-content h1[class*="text-slate-900"] {
+  color: var(--sn-ui-heading) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.sn-content h2[class*="text-[#07152f]"],
+.sn-content h2[class*="text-[#0b1730]"],
+.sn-content h3[class*="text-[#07152f]"],
+.sn-content h3[class*="text-[#0b1730]"] {
+  color: var(--sn-ui-heading) !important;
+}
+
+/* ------------------------------------------------------------
+   PAGE EYEBROWS / SMALL LABELS
+   ------------------------------------------------------------ */
+
+.sn-content p[class*="uppercase"][class*="text-blue-600"],
+.sn-content div[class*="uppercase"][class*="text-blue-600"] {
+  color: var(--sn-ui-blue) !important;
+  font-weight: 800 !important;
+}
+
+/* ------------------------------------------------------------
+   PRIMARY BUTTONS ON TAILWIND PAGES
+   ------------------------------------------------------------ */
+
+.sn-content button[class*="bg-blue-600"],
+.sn-content a[class*="bg-blue-600"] {
+  background: var(--sn-ui-blue) !important;
+  border-color: var(--sn-ui-blue) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18) !important;
+}
+
+.sn-content button[class*="bg-blue-600"]:hover,
+.sn-content a[class*="bg-blue-600"]:hover {
+  background: var(--sn-ui-blue-dark) !important;
+}
+
+/* ------------------------------------------------------------
+   WHITE / LIGHT SECONDARY BUTTONS
+   ------------------------------------------------------------ */
+
+.sn-content button[class*="border-slate-200"][class*="bg-white"],
+.sn-content button[class*="border-slate-200"][class*="bg-slate-50"] {
+  color: #334155 !important;
+  border-color: var(--sn-ui-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* ------------------------------------------------------------
+   INPUTS / SELECTS / TEXTAREAS
+   ------------------------------------------------------------ */
+
+.sn-content input,
+.sn-content select,
+.sn-content textarea {
+  border-color: var(--sn-ui-border) !important;
+  border-radius: 12px !important;
+}
+
+.sn-content input:focus,
+.sn-content select:focus,
+.sn-content textarea:focus {
+  border-color: #93b4f7 !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08) !important;
+}
+
+/* ------------------------------------------------------------
+   ANALYTICS — MATCH USER MANAGEMENT CARD LANGUAGE
+   ------------------------------------------------------------ */
+
+.sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"] > div > header {
+  padding: 24px 28px !important;
+}
+
+.sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"] > div > header h1 {
+  font-size: 34px !important;
+}
+
+.sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"] > div > header button {
+  background: var(--sn-ui-blue) !important;
+  border-color: var(--sn-ui-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18) !important;
+}
+
+/* Analytics dark performance hero becomes a coloured product card,
+   while retaining the existing metrics and chart content. */
+.sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"] > div > section > div[class*="bg-[#07152f]"] {
+  background: linear-gradient(135deg, #07152f 0%, #102b57 100%) !important;
+  border-radius: var(--sn-ui-radius-lg) !important;
+}
+
+/* ------------------------------------------------------------
+   REPORTS / TEMPLATES / USERS SUMMARY CARDS
+   ------------------------------------------------------------ */
+
+.sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"] > div > div[class*="grid"] > div[class*="rounded-2xl"],
+.sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"] > div > div[class*="grid"] > div[class*="rounded-3xl"]:not([class~="bg-[#07152f]"]) {
+  border-color: var(--sn-ui-border) !important;
+  background: #ffffff !important;
+  box-shadow: var(--sn-ui-shadow) !important;
+}
+
+.sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"] > div > div[class*="grid"] > div[class*="rounded-2xl"]:hover,
+.sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"] > div > div[class*="grid"] > div[class*="rounded-3xl"]:hover {
+  box-shadow: var(--sn-ui-shadow-hover) !important;
+}
+
+/* ------------------------------------------------------------
+   COLOURED STAT ICON BLOCKS
+   ------------------------------------------------------------ */
+
+.sn-content [class*="bg-blue-50"][class*="rounded-xl"],
+.sn-content [class*="bg-blue-50"][class*="rounded-2xl"] {
+  color: var(--sn-ui-blue) !important;
+}
+
+.sn-content [class*="bg-emerald-50"][class*="rounded-xl"],
+.sn-content [class*="bg-emerald-50"][class*="rounded-2xl"] {
+  color: #059669 !important;
+}
+
+.sn-content [class*="bg-violet-50"][class*="rounded-xl"],
+.sn-content [class*="bg-violet-50"][class*="rounded-2xl"] {
+  color: #7c3aed !important;
+}
+
+.sn-content [class*="bg-amber-50"][class*="rounded-xl"],
+.sn-content [class*="bg-amber-50"][class*="rounded-2xl"] {
+  color: #d97706 !important;
+}
+
+/* ------------------------------------------------------------
+   CAMPAIGN KPI TEXT — PREVENT WHITE-ON-WHITE REGRESSION
+   ------------------------------------------------------------ */
+
+.sn-page .sn-kpi-card {
+  color: var(--sn-ui-heading) !important;
+  background: #ffffff !important;
+}
+
+.sn-page .sn-kpi-card .sn-kpi-label {
+  color: var(--sn-ui-body) !important;
+}
+
+.sn-page .sn-kpi-card .sn-kpi-value {
+  color: var(--sn-ui-heading) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sn-page .sn-kpi-card .sn-kpi-icon svg {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ------------------------------------------------------------
+   TABLES
+   ------------------------------------------------------------ */
+
+.sn-content table thead th {
+  background: #f8fafc !important;
+  color: #64748b !important;
+  border-color: var(--sn-ui-border) !important;
+  font-weight: 800 !important;
+}
+
+.sn-content table tbody tr:hover {
+  background: #f9fbff !important;
+}
+
+/* ------------------------------------------------------------
+   ENGAGEMENT FEEDBACK / INLINE-STYLE PAGE
+   ------------------------------------------------------------ */
+
+.sn-content > div[style] {
+  max-width: 1500px !important;
+  margin: 0 auto !important;
+  padding: 4px 0 32px !important;
+}
+
+.sn-content > div[style] h1 {
+  color: var(--sn-ui-heading) !important;
+  font-size: 34px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.sn-content > div[style] button {
+  border-radius: 12px !important;
+  border-color: var(--sn-ui-border) !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+
+.sn-content > div[style] > div {
+  border-color: var(--sn-ui-border) !important;
+}
+
+/* ------------------------------------------------------------
+   CONSISTENT SPACING FOR TAILWIND WORKSPACE ROOTS
+   ------------------------------------------------------------ */
+
+.sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"],
+.sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"] {
+  padding-top: 28px !important;
+  padding-bottom: 32px !important;
+}
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .sn-content > div[class*="min-h-full"][class*="bg-[#f5f8fc]"],
+  .sn-content > div[class*="min-h-screen"][class*="bg-[#f4f7fb]"] {
+    padding: 20px 16px 28px !important;
+  }
+
+  .sn-content > div[style] {
+    padding: 20px 16px 28px !important;
+  }
+
+  .sn-content h1[class*="text-[#07152f]"],
+  .sn-content h1[class*="text-slate-950"] {
+    font-size: 30px !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   DARK MODE
+   ------------------------------------------------------------ */
+
+html[data-theme="dark"] .sn-content > div[class*="min-h-full"],
+html[data-theme="dark"] .sn-content > div[class*="min-h-screen"],
+html[data-theme="dark"] .sn-content > div[style] {
+  background: #07111f !important;
+  color: #e5edf8 !important;
+}
+
+html[data-theme="dark"] .sn-content [class*="rounded-2xl"][class*="bg-white"],
+html[data-theme="dark"] .sn-content [class*="rounded-3xl"][class*="bg-white"] {
+  background: #0d1c31 !important;
+  border-color: #20334d !important;
+}
+
+html[data-theme="dark"] .sn-content h1[class*="text-[#07152f]"],
+html[data-theme="dark"] .sn-content h2[class*="text-[#07152f]"],
+html[data-theme="dark"] .sn-content h3[class*="text-[#07152f]"],
+html[data-theme="dark"] .sn-content h1[class*="text-slate-950"],
+html[data-theme="dark"] .sn-content h1[class*="text-slate-900"] {
+  color: #f5f8ff !important;
+}
+
+html[data-theme="dark"] .sn-content [class*="text-slate-500"],
+html[data-theme="dark"] .sn-content [class*="text-slate-400"] {
+  color: #9fb0c7 !important;
+}
+
+html[data-theme="dark"] .sn-content table thead th {
+  background: #12243b !important;
+  color: #9fb0c7 !important;
+  border-color: #20334d !important;
+}
+
+/* ============================================================
+   FINAL VISUAL CORRECTIONS
+   ============================================================
+   Keep the User Management visual language consistent across
+   every workspace page without changing application logic.
+   These rules also protect intentionally dark/colored panels
+   from generic white-card overrides.
+   ============================================================ */
+
+/* Campaign KPI cards: values and labels must remain visible. */
+.sn-content .sn-kpi-card,
+.sn-page .sn-kpi-card {
+  background: #ffffff !important;
+  color: #07152f !important;
+}
+
+.sn-content .sn-kpi-card .sn-kpi-label,
+.sn-page .sn-kpi-card .sn-kpi-label {
+  color: #64748b !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sn-content .sn-kpi-card .sn-kpi-value,
+.sn-page .sn-kpi-card .sn-kpi-value {
+  color: #07152f !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sn-content .sn-kpi-card .sn-kpi-icon,
+.sn-page .sn-kpi-card .sn-kpi-icon {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Reports: preserve the intentionally dark delivery-performance hero. */
+.sn-content .bg-\[\#07152f\],
+.sn-content .reports-performance-hero {
+  background: linear-gradient(
+    135deg,
+    #07152f 0%,
+    #102b57 100%
+  ) !important;
+  color: #ffffff !important;
+}
+
+.sn-content .bg-\[\#07152f\] h1,
+.sn-content .bg-\[\#07152f\] h2,
+.sn-content .bg-\[\#07152f\] h3,
+.sn-content .bg-\[\#07152f\] p,
+.sn-content .bg-\[\#07152f\] span,
+.sn-content .bg-\[\#07152f\] strong,
+.sn-content .bg-\[\#07152f\] svg {
+  color: #ffffff !important;
+}
+
+/* Keep secondary text readable inside dark performance panels. */
+.sn-content .bg-\[\#07152f\] [class*="text-blue-100"],
+.sn-content .bg-\[\#07152f\] [class*="text-slate-300"],
+.sn-content .bg-\[\#07152f\] [class*="text-slate-400"] {
+  color: #bfdbfe !important;
+}
+
+/* Analytics performance hero is intentionally dark. */
+.sn-content .bg-\[\#07152f\] [class*="bg-white/10"],
+.sn-content .bg-\[\#07152f\] [class*="bg-white\\/10"] {
+  background: rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Reports / Analytics header and section hierarchy. */
+.sn-content > div[class*="min-h-full"] > div > header,
+.sn-content > div[class*="min-h-full"] > div > div:first-child[class*="flex"],
+.sn-content > div[class*="min-h-screen"] > div > header {
+  color: #07152f;
+}
+
+/* Template / Reports / Users / Engagement cards. */
+.sn-content [class*="rounded-2xl"][class*="bg-white"],
+.sn-content [class*="rounded-3xl"][class*="bg-white"] {
+  border-color: #e2e8f0 !important;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 24px rgba(15, 23, 42, 0.045) !important;
+}
+
+/* Preserve semantic text colors inside colored badges/icons. */
+.sn-content [class*="bg-blue-50"] [class*="text-blue-600"],
+.sn-content [class*="bg-blue-50"] [class*="text-blue-700"] {
+  color: #2563eb !important;
+}
+
+.sn-content [class*="bg-emerald-50"] [class*="text-emerald-600"],
+.sn-content [class*="bg-emerald-50"] [class*="text-emerald-700"] {
+  color: #059669 !important;
+}
+
+.sn-content [class*="bg-violet-50"] [class*="text-violet-600"],
+.sn-content [class*="bg-violet-50"] [class*="text-violet-700"] {
+  color: #7c3aed !important;
+}
+
+.sn-content [class*="bg-amber-50"] [class*="text-amber-600"],
+.sn-content [class*="bg-amber-50"] [class*="text-amber-700"] {
+  color: #d97706 !important;
+}
+
+.sn-content [class*="bg-orange-50"] [class*="text-orange-600"],
+.sn-content [class*="bg-orange-50"] [class*="text-orange-700"] {
+  color: #ea580c !important;
+}
+
+/* Common page headings. */
+.sn-content h1[class*="text-[#07152f]"],
+.sn-content h1[class*="text-3xl"],
+.sn-content h1[class*="text-4xl"] {
+  color: #07152f !important;
+  font-weight: 800 !important;
+}
+
+/* Common page descriptions. */
+.sn-content > div[class*="min-h-full"] p[class*="text-slate-500"],
+.sn-content > div[class*="min-h-screen"] p[class*="text-slate-500"] {
+  color: #64748b !important;
+}
+
+/* Tables stay crisp and readable. */
+.sn-content table thead {
+  background: #f8fafc !important;
+}
+
+.sn-content table thead th {
+  color: #64748b !important;
+}
+
+.sn-content table tbody td {
+  color: #334155;
+}
+
+/* Do not let the master card rules alter deliberate dark cards. */
+.sn-content .bg-\[\#07152f\] .rounded-2xl,
+.sn-content .bg-\[\#07152f\] .rounded-3xl {
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+@media (max-width: 900px) {
+  .sn-content > div[class*="min-h-full"],
+  .sn-content > div[class*="min-h-screen"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+
+/* ============================================================
+   SMARTNOTIFY DARK PANEL PROTECTION
+   Preserve intentional dark sections and their white content.
+   Use an escaped class selector so the arbitrary Tailwind
+   color class is parsed reliably by the browser/CSS tooling.
+   ============================================================ */
+
+.sn-content .bg-\[\#07152f\] {
+  background: #07152f !important;
+  color: #ffffff !important;
+}
+
+.sn-content .bg-\[\#07152f\] h1,
+.sn-content .bg-\[\#07152f\] h2,
+.sn-content .bg-\[\#07152f\] h3,
+.sn-content .bg-\[\#07152f\] h4,
+.sn-content .bg-\[\#07152f\] p,
+.sn-content .bg-\[\#07152f\] span,
+.sn-content .bg-\[\#07152f\] strong {
+  color: inherit;
+}
+
+.sn-content .bg-\[\#07152f\] .text-white,
+.sn-content .bg-\[\#07152f\] [class*="text-white"] {
+  color: #ffffff !important;
+}
+
+.sn-content .bg-\[\#07152f\] .text-blue-100,
+.sn-content .bg-\[\#07152f\] .text-blue-200 {
+  color: #bfdbfe !important;
+}
+
+.sn-content .bg-\[\#07152f\] .text-slate-300,
+.sn-content .bg-\[\#07152f\] .text-slate-400 {
+  color: #cbd5e1 !important;
+}
+
+/* Hero metric cards remain translucent inside the dark panel. */
+.sn-content .bg-\[\#07152f\] .bg-white\/10 {
+  background: rgba(255, 255, 255, 0.10) !important;
+  color: #ffffff !important;
+}
+
+
+/* ============================================================
+   FINAL DARK REPORT/PERFORMANCE PANEL OVERRIDE
+   This targets the actual Tailwind class directly, regardless
+   of which page wrapper contains the panel.
+   ============================================================ */
+
+div[class*="bg-[#07152f]"] {
+  background-color: #07152f !important;
+  color: #ffffff !important;
+}
+
+div[class*="bg-[#07152f]"] h1,
+div[class*="bg-[#07152f]"] h2,
+div[class*="bg-[#07152f]"] h3,
+div[class*="bg-[#07152f]"] h4,
+div[class*="bg-[#07152f]"] p,
+div[class*="bg-[#07152f]"] span,
+div[class*="bg-[#07152f]"] strong {
+  color: #ffffff !important;
+}
+
+div[class*="bg-[#07152f]"] [class*="text-blue-100"] {
+  color: #dbeafe !important;
+}
+
+div[class*="bg-[#07152f]"] [class*="text-white"] {
+  color: #ffffff !important;
+}
+
+div[class*="bg-[#07152f]"] [class*="bg-white"] {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+}
+/* ============================================================
+   REPORTS - DELIVERY PERFORMANCE HERO FIX
+   Keep the Reports hero dark and its content readable.
+   UI-only override.
+   ============================================================ */
+
+.sn-content div.bg-\[\#07152f\] {
+  background: linear-gradient(
+    135deg,
+    #07152f 0%,
+    #102b57 100%
+  ) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Hero text */
+.sn-content div.bg-\[\#07152f\] h1,
+.sn-content div.bg-\[\#07152f\] h2,
+.sn-content div.bg-\[\#07152f\] h3,
+.sn-content div.bg-\[\#07152f\] p,
+.sn-content div.bg-\[\#07152f\] span {
+  color: #ffffff !important;
+}
+
+/* Preserve the softer secondary text used by the hero */
+.sn-content div.bg-\[\#07152f\] .text-blue-100,
+.sn-content div.bg-\[\#07152f\] .text-blue-100\/70,
+.sn-content div.bg-\[\#07152f\] .text-blue-100\/60 {
+  color: rgba(219, 234, 254, 0.82) !important;
+}
+
+/* Hero metric cards */
+.sn-content div.bg-\[\#07152f\] div.bg-white\/10 {
+  background: rgba(255, 255, 255, 0.10) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+/* Hero icons */
+.sn-content div.bg-\[\#07152f\] svg {
+  color: #ffffff !important;
+}
+
+/* Progress track */
+.sn-content div.bg-\[\#07152f\] div.bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Progress bar */
+.sn-content div.bg-\[\#07152f\] div.bg-white {
+  background-color: #ffffff !important;
+}
+/* ============================================================
+   REPORTS HERO - DIRECT CLASS ATTRIBUTE FIX
+   ============================================================ */
+
+.sn-content [class~="bg-[#07152f]"] {
+  background: linear-gradient(
+    135deg,
+    #07152f 0%,
+    #102b57 100%
+  ) !important;
+
+  background-color: #07152f !important;
+  color: #ffffff !important;
+}
+
+/* Hero text */
+.sn-content [class~="bg-[#07152f]"] h1,
+.sn-content [class~="bg-[#07152f]"] h2,
+.sn-content [class~="bg-[#07152f]"] h3,
+.sn-content [class~="bg-[#07152f]"] p,
+.sn-content [class~="bg-[#07152f]"] span,
+.sn-content [class~="bg-[#07152f]"] strong {
+  color: #ffffff !important;
+}
+
+/* Secondary hero description */
+.sn-content [class~="bg-[#07152f]"] .text-blue-100\/70 {
+  color: rgba(219, 234, 254, 0.82) !important;
+}
+
+/* Small "Overall delivery performance" badge */
+.sn-content [class~="bg-[#07152f]"] .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Hero progress track */
+.sn-content [class~="bg-[#07152f]"] .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Hero progress bar */
+.sn-content [class~="bg-[#07152f]"] .bg-white {
+  background-color: #ffffff !important;
+}
+/* =========================================================
+   REPORTS HERO — FINAL DIRECT FIX
+   ========================================================= */
+
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl {
+  background: #07152f !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  color: #ffffff !important;
+}
+
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl > .relative {
+  color: #ffffff !important;
+}
+
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl h1,
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl h2,
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl h3,
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl p,
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl span,
+.sn-content div[class~="bg-[#07152f]"].relative.overflow-hidden.rounded-3xl strong {
+  color: #ffffff !important;
+}

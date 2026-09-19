@@ -1,0 +1,1123 @@
+/* =========================================================
+   CAMPAIGN DELIVERY
+   SmartNotify
+========================================================= */
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.campaign-delivery-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(7, 15, 34, 0.62);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  overflow-y: auto;
+}
+
+
+/* =========================================================
+   MODAL CONTAINER
+========================================================= */
+
+.campaign-delivery-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 680px;
+
+  max-height: calc(100vh - 40px);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #dce5ef;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 30px 80px rgba(15, 23, 42, 0.25);
+
+  animation: campaignDeliveryAppear 0.18s ease-out;
+}
+
+
+/* =========================================================
+   MODAL ANIMATION
+========================================================= */
+
+@keyframes campaignDeliveryAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.campaign-delivery-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 23px 25px;
+
+  border-bottom: 1px solid #e6edf5;
+
+  background: #f8fbff;
+}
+
+
+/* =========================================================
+   HEADER TEXT
+========================================================= */
+
+.campaign-delivery-eyebrow {
+  margin-bottom: 6px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  color: #2563eb;
+}
+
+.campaign-delivery-header h2 {
+  margin: 0;
+
+  color: #07152e;
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  line-height: 1.25;
+}
+
+.campaign-delivery-header p {
+  margin: 5px 0 0;
+
+  color: #71849c;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.campaign-delivery-close {
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: 1px solid #dbe4ee;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.campaign-delivery-close:hover {
+  border-color: #fecaca;
+
+  background: #fff1f2;
+
+  color: #dc2626;
+
+  transform: rotate(2deg);
+}
+
+.campaign-delivery-close:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.campaign-delivery-body {
+  flex: 1;
+
+  padding: 24px 25px;
+
+  overflow-y: auto;
+}
+
+
+/* =========================================================
+   CAMPAIGN SUMMARY
+========================================================= */
+
+.campaign-delivery-summary {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  padding: 15px 16px;
+
+  border: 1px solid #dce7f5;
+
+  border-radius: 13px;
+
+  background: #f8fbff;
+}
+
+.campaign-delivery-summary strong {
+  display: block;
+
+  color: #172033;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  line-height: 1.4;
+}
+
+.campaign-delivery-summary span {
+  display: block;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+}
+
+.campaign-delivery-summary span:last-child {
+  max-height: 90px;
+
+  overflow-y: auto;
+
+  padding-right: 4px;
+}
+
+
+/* =========================================================
+   SECTION LABELS
+========================================================= */
+
+.campaign-delivery-body > label {
+  display: block;
+
+  margin-top: 21px;
+
+  margin-bottom: 9px;
+
+  color: #334155;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   CHANNEL GRID
+========================================================= */
+
+.campaign-channel-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 9px;
+}
+
+
+/* =========================================================
+   CHANNEL CARD
+========================================================= */
+
+.campaign-channel-card {
+  position: relative;
+
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 10px 8px;
+
+  border: 1px solid #d8e2ee;
+
+  border-radius: 11px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.campaign-channel-card:hover:not(:disabled) {
+  border-color: #93b4ef;
+
+  background: #f8fbff;
+
+  color: #2563eb;
+
+  transform: translateY(-1px);
+}
+
+.campaign-channel-card:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.campaign-channel-card.selected {
+  border-color: #2563eb;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.08);
+}
+
+.campaign-channel-card:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   CHANNEL CHECK
+========================================================= */
+
+.campaign-channel-check {
+  position: absolute;
+
+  top: 5px;
+  right: 7px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 15px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-size: 9px;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   RECIPIENT AREA
+========================================================= */
+
+.campaign-recipient-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: 14px;
+
+  margin-top: 20px;
+}
+
+.campaign-recipient-grid > div {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   RECIPIENT LABEL
+========================================================= */
+
+.campaign-recipient-grid label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #475569;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   RECIPIENT INPUT
+========================================================= */
+
+.campaign-recipient-grid input {
+  box-sizing: border-box;
+
+  width: 100%;
+
+  height: 43px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d7e1ec;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #172033;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.campaign-recipient-grid input::placeholder {
+  color: #a0aec0;
+}
+
+.campaign-recipient-grid input:hover:not(:disabled) {
+  border-color: #b8c7d9;
+}
+
+.campaign-recipient-grid input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.campaign-recipient-grid input:disabled {
+  background: #f8fafc;
+
+  color: #94a3b8;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SELECTED CHANNEL BOX
+========================================================= */
+
+.campaign-selected-channel {
+  box-sizing: border-box;
+
+  width: 100%;
+
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d7e1ec;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  color: #334155;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SUCCESS INFORMATION
+========================================================= */
+
+.campaign-delivery-success {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 8px;
+
+  margin-top: 17px;
+
+  padding: 11px 13px;
+
+  border: 1px solid #bbf7d0;
+
+  border-radius: 10px;
+
+  background: #ecfdf5;
+
+  color: #047857;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  line-height: 1.5;
+}
+
+.campaign-delivery-success svg {
+  flex-shrink: 0;
+
+  margin-top: 1px;
+}
+
+
+/* =========================================================
+   WARNING INFORMATION
+========================================================= */
+
+.campaign-delivery-warning {
+  margin-top: 17px;
+
+  padding: 12px 13px;
+
+  border: 1px solid #f6d89b;
+
+  border-radius: 10px;
+
+  background: #fff8eb;
+
+  color: #8a5a00;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.campaign-delivery-footer {
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 15px 25px;
+
+  border-top: 1px solid #e6edf5;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.campaign-delivery-cancel {
+  height: 42px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 17px;
+
+  border: 1px solid #d8e2ee;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.campaign-delivery-cancel:hover:not(:disabled) {
+  border-color: #cbd5e1;
+
+  background: #f8fafc;
+
+  color: #1e293b;
+}
+
+.campaign-delivery-cancel:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(100, 116, 139, 0.12);
+}
+
+
+/* =========================================================
+   SEND BUTTON
+========================================================= */
+
+.campaign-delivery-send {
+  min-width: 125px;
+
+  height: 42px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 18px;
+
+  border: 1px solid #2563eb;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(37, 99, 235, 0.18);
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.campaign-delivery-send:hover:not(:disabled) {
+  border-color: #1d4ed8;
+
+  background: #1d4ed8;
+
+  box-shadow:
+    0 8px 20px rgba(37, 99, 235, 0.24);
+
+  transform: translateY(-1px);
+}
+
+.campaign-delivery-send:active:not(:disabled) {
+  transform: translateY(0);
+
+  box-shadow:
+    0 4px 10px rgba(37, 99, 235, 0.18);
+}
+
+.campaign-delivery-send:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.15),
+    0 6px 16px rgba(37, 99, 235, 0.18);
+}
+
+
+/* =========================================================
+   DISABLED BUTTONS
+========================================================= */
+
+.campaign-delivery-cancel:disabled,
+.campaign-delivery-send:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.campaign-delivery-spinner {
+  animation:
+    campaignDeliverySpin 0.8s linear infinite;
+}
+
+@keyframes campaignDeliverySpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.campaign-delivery-body::-webkit-scrollbar,
+.campaign-delivery-summary span:last-child::-webkit-scrollbar {
+  width: 6px;
+}
+
+.campaign-delivery-body::-webkit-scrollbar-track,
+.campaign-delivery-summary span:last-child::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.campaign-delivery-body::-webkit-scrollbar-thumb,
+.campaign-delivery-summary span:last-child::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background: #cbd5e1;
+}
+
+.campaign-delivery-body::-webkit-scrollbar-thumb:hover,
+.campaign-delivery-summary span:last-child::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* =========================================================
+   TABLE SEND BUTTON
+   Put this section here ONLY if you want the
+   Campaign.jsx Send button styled from this CSS.
+========================================================= */
+
+.sn-action-send {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: 1px solid #c7dafb;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.sn-action-send:hover {
+  border-color: #2563eb;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+.sn-action-send:active {
+  transform: translateY(0);
+}
+
+.sn-action-send:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .campaign-delivery-overlay {
+    padding: 12px;
+  }
+
+  .campaign-delivery-modal {
+    max-height: calc(100vh - 24px);
+
+    border-radius: 16px;
+  }
+
+  .campaign-delivery-header {
+    padding: 19px;
+  }
+
+  .campaign-delivery-body {
+    padding: 20px 19px;
+  }
+
+  .campaign-delivery-footer {
+    padding: 14px 19px;
+  }
+
+  .campaign-channel-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .campaign-recipient-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+  .campaign-delivery-overlay {
+    padding: 8px;
+  }
+
+  .campaign-delivery-modal {
+    max-height: calc(100vh - 16px);
+
+    border-radius: 14px;
+  }
+
+  .campaign-delivery-header {
+    padding: 17px;
+  }
+
+  .campaign-delivery-header h2 {
+    font-size: 19px;
+  }
+
+  .campaign-delivery-header p {
+    font-size: 11px;
+  }
+
+  .campaign-delivery-body {
+    padding: 17px;
+  }
+
+  .campaign-delivery-footer {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 13px 17px;
+  }
+
+  .campaign-delivery-cancel,
+  .campaign-delivery-send {
+    width: 100%;
+  }
+
+  .campaign-channel-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 7px;
+  }
+
+  .campaign-channel-card {
+    min-height: 48px;
+
+    font-size: 11px;
+  }
+
+  .campaign-delivery-summary {
+    padding: 13px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 340px) {
+
+  .campaign-channel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campaign-delivery-header {
+    gap: 10px;
+  }
+
+  .campaign-delivery-close {
+    width: 32px;
+    height: 32px;
+  }
+}
+/* =========================================================
+   CAMPAIGN VIEW MODAL
+   READ-ONLY DETAILS
+   ========================================================= */
+
+.sn-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 32px;
+  border-top: 1px solid #e3eaf2;
+  background: #ffffff;
+}
+
+.sn-view-value {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid #dce5ef;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #233b59;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.sn-view-status {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.sn-view-content {
+  min-height: 150px;
+  padding: 16px;
+  border: 1px solid #dce5ef;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.sn-view-audience-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 18px;
+  padding: 15px;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  background: #eff6ff;
+}
+
+.sn-view-audience-summary strong {
+  color: #1e40af;
+  font-size: 14px;
+}
+
+.sn-view-audience-summary span {
+  color: #526b88;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sn-view-channel-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sn-view-channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 13px;
+  border: 1px solid #bfdbfe;
+  border-radius: 9px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sn-view-recipient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sn-view-recipient {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 15px;
+  border: 1px solid #dce5ef;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.sn-view-recipient strong {
+  color: #334155;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.sn-view-recipient span {
+  color: #526b88;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+.sn-view-empty {
+  padding: 25px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #94a3b8;
+  text-align: center;
+  font-size: 13px;
+}
+
+.sn-status-red {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.sn-status-red .sn-status-dot {
+  background: #ef4444;
+}
+
+@media (max-width: 700px) {
+  .sn-modal-footer {
+    padding: 15px 20px;
+  }
+
+  .sn-view-channel-list {
+    flex-direction: column;
+  }
+
+  .sn-view-channel {
+    width: 100%;
+  }
+}

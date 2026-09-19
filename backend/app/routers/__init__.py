@@ -3,3 +3,5 @@ from . import audience
 from . import campaign
 from . import template
 from . import dashboard
+from . import ai
+from . import channels

@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.database.db import get_db
@@ -13,9 +14,11 @@ from app.schemas.template import (
 )
 
 from app.utils.roles import (
+    require_workspace_user,
     require_campaign_manager,
     require_communication_team,
 )
+
 
 router = APIRouter(
     prefix="/template",
@@ -23,98 +26,244 @@ router = APIRouter(
 )
 
 
-@router.post("/", response_model=TemplateResponse)
+# ============================================================
+# CREATE TEMPLATE
+# ============================================================
+
+@router.post(
+    "/",
+    response_model=TemplateResponse
+)
 def create_template(
     template: TemplateCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(require_campaign_manager),
+    current_user: User = Depends(
+        require_campaign_manager
+    ),
 ):
-    new_template = Template(
-        template_name=template.template_name,
-        template_type=template.template_type,
-        content=template.content,
-    )
+    try:
+        print(
+            "CREATE TEMPLATE:",
+            template.model_dump()
+        )
 
-    db.add(new_template)
-    db.commit()
-    db.refresh(new_template)
+        new_template = Template(
+            template_name=template.template_name.strip(),
+            template_type=template.template_type,
+            content=template.content.strip(),
+        )
 
-    return new_template
+        db.add(new_template)
+        db.commit()
+        db.refresh(new_template)
+
+        return new_template
+
+    except SQLAlchemyError as error:
+        db.rollback()
+
+        print(
+            "TEMPLATE DATABASE ERROR:",
+            error
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Database error while creating template."
+        )
+
+    except Exception as error:
+        db.rollback()
+
+        print(
+            "TEMPLATE CREATE ERROR:",
+            error
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(error)
+        )
 
 
-@router.get("/", response_model=list[TemplateResponse])
+# ============================================================
+# GET ALL TEMPLATES
+# ============================================================
+
+@router.get(
+    "/",
+    response_model=list[TemplateResponse]
+)
 def get_templates(
     db: Session = Depends(get_db),
-    current_user: User = Depends(require_communication_team),
+    current_user: User = Depends(
+        require_workspace_user
+    ),
 ):
-    return db.query(Template).all()
+    return (
+        db.query(Template)
+        .order_by(Template.id.desc())
+        .all()
+    )
 
 
-@router.get("/{template_id}", response_model=TemplateResponse)
+# ============================================================
+# GET TEMPLATE BY ID
+# ============================================================
+
+@router.get(
+    "/{template_id}",
+    response_model=TemplateResponse
+)
 def get_template(
     template_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(require_communication_team),
+    current_user: User = Depends(
+        require_workspace_user
+    ),
 ):
-    template = db.query(Template).filter(
-        Template.id == template_id
-    ).first()
+    template = (
+        db.query(Template)
+        .filter(Template.id == template_id)
+        .first()
+    )
 
-    if not template:
+    if template is None:
         raise HTTPException(
             status_code=404,
-            detail="Template not found",
+            detail="Template not found"
         )
 
     return template
 
 
-@router.put("/{template_id}", response_model=TemplateResponse)
+# ============================================================
+# UPDATE TEMPLATE
+# ============================================================
+
+@router.put(
+    "/{template_id}",
+    response_model=TemplateResponse
+)
 def update_template(
     template_id: int,
     template_update: TemplateUpdate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(require_campaign_manager),
+    current_user: User = Depends(
+        require_campaign_manager
+    ),
 ):
-    template = db.query(Template).filter(
-        Template.id == template_id
-    ).first()
-
-    if not template:
-        raise HTTPException(
-            status_code=404,
-            detail="Template not found",
+    try:
+        template = (
+            db.query(Template)
+            .filter(Template.id == template_id)
+            .first()
         )
 
-    template.template_name = template_update.template_name
-    template.template_type = template_update.template_type
-    template.content = template_update.content
+        if template is None:
+            raise HTTPException(
+                status_code=404,
+                detail="Template not found"
+            )
 
-    db.commit()
-    db.refresh(template)
+        print(
+            "UPDATE TEMPLATE:",
+            template_update.model_dump()
+        )
 
-    return template
+        template.template_name = (
+            template_update.template_name.strip()
+        )
+
+        template.template_type = (
+            template_update.template_type
+        )
+
+        template.content = (
+            template_update.content.strip()
+        )
+
+        db.commit()
+        db.refresh(template)
+
+        return template
+
+    except HTTPException:
+        raise
+
+    except SQLAlchemyError as error:
+        db.rollback()
+
+        print(
+            "TEMPLATE UPDATE DATABASE ERROR:",
+            error
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Database error while updating template."
+        )
+
+    except Exception as error:
+        db.rollback()
+
+        print(
+            "TEMPLATE UPDATE ERROR:",
+            error
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(error)
+        )
 
 
-@router.delete("/{template_id}")
+# ============================================================
+# DELETE TEMPLATE
+# ============================================================
+
+@router.delete(
+    "/{template_id}"
+)
 def delete_template(
     template_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(require_campaign_manager),
+    current_user: User = Depends(
+        require_campaign_manager
+    ),
 ):
-    template = db.query(Template).filter(
-        Template.id == template_id
-    ).first()
-
-    if not template:
-        raise HTTPException(
-            status_code=404,
-            detail="Template not found",
+    try:
+        template = (
+            db.query(Template)
+            .filter(Template.id == template_id)
+            .first()
         )
 
-    db.delete(template)
-    db.commit()
+        if template is None:
+            raise HTTPException(
+                status_code=404,
+                detail="Template not found"
+            )
 
-    return {
-        "message": "Template deleted successfully"
-    }
+        db.delete(template)
+        db.commit()
+
+        return {
+            "message": "Template deleted successfully"
+        }
+
+    except HTTPException:
+        raise
+
+    except SQLAlchemyError as error:
+        db.rollback()
+
+        print(
+            "TEMPLATE DELETE DATABASE ERROR:",
+            error
+        )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Database error while deleting template."
+        )

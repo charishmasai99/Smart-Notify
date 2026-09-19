@@ -1,0 +1,56 @@
+# =========================
+# ENVIRONMENT & SECRETS
+# =========================
+.env
+.env.*
+!.env.example
+
+firebase-service-account.json
+firebase-adminsdk*.json
+
+*.pem
+*.key
+*.p12
+*.pfx
+
+# =========================
+# PYTHON
+# =========================
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+venv/
+.venv/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# =========================
+# DATABASE / LOCAL DATA
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.bak
+
+uploads/
+data/
+logs/
+
+# =========================
+# DEMO / SEED
+# =========================
+seed_demo*.py
+reset_passwords.py
+
+# =========================
+# LOGS / TEMP
+# =========================
+*.log
+*.tmp
+*.temp
