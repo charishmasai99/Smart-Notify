@@ -9,7 +9,7 @@
 ![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-![License](https://img.shields.io/badge/License-Academic-22C55E?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 **[📦 Installation](#-installation) · [✨ Features](#-features) · [🏗️ Architecture](#️-system-architecture) · [📸 Screenshots](#-screenshots) · [🔄 Workflow](#-application-workflow)**
 
@@ -168,12 +168,12 @@ AI-Mass-Communication/
 - Python 3.x
 - Node.js & npm
 - Git
-- PostgreSQL (or another supported relational database)
+- PostgreSQL 
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/charishmasai99/AI-Mass-Communication.git
-cd AI-Mass-Communication
+git clone https://github.com/charishmasai99/Smart-Notify.git
+cd Smart-Notify
 ```
 
 ### 2. Backend Setup
@@ -238,7 +238,7 @@ npm run dev
 
 - Role-based authorization on every protected route
 - JWT-based authentication and session handling
-- Environment-based secret configuration — credentials never hardcoded
+- Credentials are never hardcoded in source code
 - Mandatory approval step before any campaign is delivered
 - Restricted access to administrative functions
 
@@ -280,8 +280,9 @@ Avoid committing secrets, local databases, dependency folders, generated files, 
 
 ## 📄 License
 
-This project is developed for academic/project purposes.
+This project is licensed under the MIT License.
 
+See the [LICENSE](LICENSE) file for the full license text.
 ---
 
 ## 👩‍💻 Author
