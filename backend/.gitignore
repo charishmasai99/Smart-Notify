@@ -54,3 +54,9 @@ reset_passwords.py
 *.log
 *.tmp
 *.temp
+# =========================
+# MIGRATION RECOVERY
+# =========================
+alembic/versions_old/
+check_old_db.py
+../smartnotify_old_data.sql

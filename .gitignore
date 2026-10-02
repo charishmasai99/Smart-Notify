@@ -115,3 +115,5 @@ logs/
 *.tmp
 *.temp
 *.cache
+# Migration recovery dump
+smartnotify_old_data.sql
