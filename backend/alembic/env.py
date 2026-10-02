@@ -29,14 +29,15 @@ load_dotenv(
 # IMPORTANT:
 # Alembic must know about every SQLAlchemy model.
 # ============================================================
-
 from app.models.user import User
 from app.models.audience import Audience
+from app.models.audience_member import AudienceMember
 from app.models.campaign import Campaign
 from app.models.delivery import Delivery
-from app.models.template import Template
+from app.models.fcm_token import FCMToken
 from app.models.feedback import Feedback
-
+from app.models.notification import Notification
+from app.models.template import Template
 
 # ============================================================
 # ALEMBIC CONFIG
@@ -76,9 +77,14 @@ if not DATABASE_URL:
 # TELL ALEMBIC WHICH DATABASE TO USE
 # ============================================================
 
+database_url = os.getenv("DATABASE_URL")
+
+if not database_url:
+    raise RuntimeError("DATABASE_URL is not set")
+
 config.set_main_option(
     "sqlalchemy.url",
-    DATABASE_URL
+    database_url.replace("%", "%%")
 )
 
 

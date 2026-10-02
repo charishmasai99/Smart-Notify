@@ -169,7 +169,6 @@ FRONTEND_URL = os.getenv(
     "http://localhost:5173"
 ).strip().rstrip("/")
 
-print("CORS FRONTEND_URL:", repr(FRONTEND_URL))
 
 app.add_middleware(
     CORSMiddleware,
